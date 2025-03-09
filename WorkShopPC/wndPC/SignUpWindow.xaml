@@ -1,0 +1,33 @@
+﻿<Window x:Class="WorkShopPC.wndPC.SignUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkShopPC.wndPC"
+        mc:Ignorable="d"
+        Title="SignUpWindow" Height="300" Width="380">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="SignInWindow" Content="Войти" HorizontalAlignment="Right" 
+                VerticalAlignment="Center" Margin="5" Width="100" Click="SignInWindow_Click"/>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" >
+            <TextBox x:Name="nameText" Text="FirstName" Margin="2" Width="120"/>
+            <TextBox x:Name="surnameText" Text="LastName" Margin="2" Width="120"/>
+            <TextBox x:Name="phoneText" Text="Phone" Margin="2" Width="120"/>
+            <ComboBox x:Name="positionComboBox"  Width="120" Margin="2">
+                <ComboBoxItem Content="Директор"/>
+                <ComboBoxItem Content="Специалист"/>
+            </ComboBox>
+            <TextBox x:Name="loginText" Text="Email" Margin="2" Width="120"/>
+            <PasswordBox x:Name="passwordText" Width="120"/>
+
+            <Button x:Name="signUpButton" Content="Зарегистрироваться" Click="SignUpButton_Click" Margin="10" Width="120"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
