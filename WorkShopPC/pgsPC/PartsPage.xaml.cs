@@ -11,41 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using WorkShopPC.pgsPC;
 using System.Windows.Shapes;
 
-namespace WorkShopPC.wndPC
+namespace WorkShopPC.pgsPC
 {
     /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
+    /// Логика взаимодействия для PartsPage.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class PartsPage : Page
     {
-        public Employees user;
-
-        public AdminWindow()
+        public PartsPage()
         {
             InitializeComponent();
 
             DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();
         }
 
-        public AdminWindow(Employees user)
-        {
-            this.user = user;
-        }
-
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PrtsButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate();
-        }
-
-        private void ClientsButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

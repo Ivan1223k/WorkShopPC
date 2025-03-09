@@ -19,15 +19,21 @@ namespace WorkShopPC.wndPC
     /// </summary>
     public partial class UserWindow : Window
     {
-        private Employees user;
+        public Employees user;
 
         public UserWindow()
         {
             InitializeComponent();
+            DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();
         }
         public UserWindow(Employees user)
         {
             this.user = user;
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

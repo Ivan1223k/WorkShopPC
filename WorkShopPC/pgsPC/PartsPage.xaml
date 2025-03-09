@@ -1,0 +1,51 @@
+﻿<Page x:Class="WorkShopPC.pgsPC.PartsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorkShopPC.pgsPC"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PartsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Главная" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39"/>
+        <Button Content="Клиенты" x:Name="nextstr3" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="1"/>
+        <Button Content="Прибыль" x:Name="nextstr4" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="2"/>
+        <Button Content="nextstr5" x:Name="nextstr5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="3"/>
+
+        <DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridOrders" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
+      VerticalAlignment="Center" HorizontalAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding PartName}"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="На складе" Binding="{Binding Stock}"/>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ButtonEdit" Content="Редактировать" Click="ButtonEdit_Click" Background="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>
