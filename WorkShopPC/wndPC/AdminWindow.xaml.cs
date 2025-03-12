@@ -42,7 +42,7 @@ namespace WorkShopPC.wndPC
 
         private void PrtsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate();
+            //NavigationService.Navigate(new PartsPage());
         }
 
         private void ClientsButton_Click(object sender, RoutedEventArgs e)

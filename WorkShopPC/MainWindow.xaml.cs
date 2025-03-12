@@ -113,34 +113,34 @@ namespace WorkShopPC
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (string.IsNullOrEmpty(loginTextBox.Text) || string.IsNullOrEmpty(passwordTextBox.Password))
-            //{
-            //    MessageBox.Show("Введите логин и пароль!");
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(loginTextBox.Text) || string.IsNullOrEmpty(passwordTextBox.Password))
+            {
+                MessageBox.Show("Введите логин и пароль!");
+                return;
+            }
 
-            //string _password = GetHash(passwordTextBox.Password);
-            //using (var db = new Entities())
-            //{
-            //    var user = db.Employees.AsNoTracking().FirstOrDefault(em => em.Email == loginTextBox.Text && em.Password == _password);
-            //    if (user == null) 
-            //    { 
-            //        MessageBox.Show("Пользователь с такими данными не найден!"); 
-            //        return; 
-            //    }
-            //    if (user.RoleID == 1)
-            //    {
+            string _password = GetHash(passwordTextBox.Password);
+            using (var db = new Entities())
+            {
+                var user = db.Employees.AsNoTracking().FirstOrDefault(em => em.Email == loginTextBox.Text && em.Password == _password);
+                if (user == null)
+                {
+                    MessageBox.Show("Пользователь с такими данными не найден!");
+                    return;
+                }
+                if (user.RoleID == 1)
+                {
                     var newWindow = new AdminWindow();
                     newWindow.Show();
                     this.Close();
-                //}
-                //else
-                //{
-                    //var newWindow = new UserWindow(user);
-                    //newWindow.Show();
-                    //this.Close();
-                //}
-            //}
+                }
+            else
+                {
+                    var newWindow = new UserWindow(user);
+                    newWindow.Show();
+                    this.Close();
+                }
+            }
         }
 
         private void SignUpWindowButton_Click(object sender, RoutedEventArgs e)
