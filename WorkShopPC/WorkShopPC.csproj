@@ -94,6 +94,9 @@
     <Compile Include="pgsPC\ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pgsPC\OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pgsPC\PartsPage.xaml.cs">
       <DependentUpon>PartsPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="pgsPC\ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pgsPC\OrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

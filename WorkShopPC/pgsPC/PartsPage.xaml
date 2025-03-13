@@ -9,26 +9,10 @@
       Title="PartsPage">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
+  
 
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
 
-        <Button Content="Главная" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39"/>
-        <Button Content="Клиенты" x:Name="nextstr3" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="1"/>
-        <Button Content="Прибыль" x:Name="nextstr4" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="2"/>
-        <Button Content="nextstr5" x:Name="nextstr5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="3"/>
-
-        <DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridOrders" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
+        <DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridParts" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
       VerticalAlignment="Center" HorizontalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding PartName}"/>

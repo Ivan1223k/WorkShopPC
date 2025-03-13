@@ -27,7 +27,7 @@ namespace WorkShopPC.wndPC
         {
             InitializeComponent();
 
-            DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();
+            
         }
 
         public AdminWindow(Employees user)
@@ -42,12 +42,17 @@ namespace WorkShopPC.wndPC
 
         private void PrtsButton_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new PartsPage());
+            AdminFrame.NavigationService.Navigate(new PartsPage());
         }
 
         private void ClientsButton_Click(object sender, RoutedEventArgs e)
         {
+            //NavigationService.Navigate(new PartsPage());
+        }
 
+        private void OrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new OrdersPage());
         }
     }
 }

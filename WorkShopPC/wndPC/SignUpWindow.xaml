@@ -19,10 +19,7 @@
             <TextBox x:Name="nameText" Text="FirstName" Margin="2" Width="120"/>
             <TextBox x:Name="surnameText" Text="LastName" Margin="2" Width="120"/>
             <TextBox x:Name="phoneText" Text="Phone" Margin="2" Width="120"/>
-            <ComboBox x:Name="positionComboBox"  Width="120" Margin="2">
-                <ComboBoxItem Content="Директор"/>
-                <ComboBoxItem Content="Специалист"/>
-            </ComboBox>
+            <!--<ComboBox x:Name="positionComboBox"  Width="120" Margin="2" DisplayMemberPath="RoleName" SelectedItem="{Binding Roles}"/>-->
             <TextBox x:Name="loginText" Text="Email" Margin="2" Width="120"/>
             <PasswordBox x:Name="passwordText" Width="120"/>
 

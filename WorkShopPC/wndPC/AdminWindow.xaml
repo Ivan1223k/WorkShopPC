@@ -23,15 +23,16 @@
 
 
 
-        <Button Content="Главная" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39"/>
+        <Button Content="Заказы" x:Name="OrdersButton" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Click="OrdersButton_Click"/>
         <Button Content="Запчасти" x:Name="PrtsButton" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="1" Click="PrtsButton_Click"/>
         <Button Content="Клиенты" x:Name="ClientsButton" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="2" Click="ClientsButton_Click"/>
         <Button Content="Прибыль" x:Name="nextstr4" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="3"/>
         <Button Content="nextstr5" x:Name="nextstr5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="4"/>
-        
 
 
-        <DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridOrders" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
+        <Frame x:Name="AdminFrame" Grid.Column="1" Grid.RowSpan="6" NavigationUIVisibility="Hidden" Source="/../pgsPC/OrdersPage.xaml"/>
+
+        <!--<DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridOrders" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
               VerticalAlignment="Center" HorizontalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Клиент" Binding="{Binding ClientID}"/>
@@ -49,7 +50,7 @@
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
 
     </Grid>
 </Window>
