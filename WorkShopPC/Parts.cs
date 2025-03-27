@@ -24,6 +24,7 @@ namespace WorkShopPC
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Stock { get; set; }
+        public byte[] PicturePart { get; set; }
     
         public virtual ICollection<UsedParts> UsedParts { get; set; }
     }

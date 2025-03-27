@@ -10,8 +10,8 @@
 
     <Grid>
 
-        <DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridOrders" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
-           VerticalAlignment="Center" HorizontalAlignment="Center">
+        <DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridOrders" AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
+           VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" >
          <DataGrid.Columns>
              <DataGridTextColumn Header="Клиент" Binding="{Binding ClientID}"/>
              <DataGridTextColumn Header="Устройство" Binding="{Binding DeviceID}"/>
@@ -29,6 +29,8 @@
 
          </DataGrid.Columns>
      </DataGrid>
+
+
 
     </Grid>
 </Page>

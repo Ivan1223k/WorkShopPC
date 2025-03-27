@@ -11,25 +11,50 @@
     <Grid>
   
 
+        <ListView Name="ListParts" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+          HorizontalContentAlignment="Center" Style="{DynamicResource RoundedListViewStyle}">
 
-        <DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridParts" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
-      VerticalAlignment="Center" HorizontalAlignment="Center">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding PartName}"/>
-                <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
-                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
-                <DataGridTextColumn Header="На складе" Binding="{Binding Stock}"/>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource RoundedListViewItemStyle}"/>
+            </ListView.ItemContainerStyle>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="One" Height="Auto"></RowDefinition>
+                            <RowDefinition x:Name="Two" Height="150"></RowDefinition>
+                            <RowDefinition x:Name="Three" Height="150"></RowDefinition>
+                            <RowDefinition x:Name="Four" Height="150"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="ButtonEdit" Content="Редактировать" Click="ButtonEdit_Click" Background="White"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                        <!--<Image>
+                            <Image.Source>
+                                <Binding Path="">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>//</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>-->
 
-            </DataGrid.Columns>
-        </DataGrid>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" Width="300"
+                                   TextWrapping="Wrap" Text="{Binding PartName}" FontSize = "18"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center" Width="300" 
+                                   TextWrapping="Wrap" Text="{Binding Description}" FontSize = "18" Margin="0,100,0,0"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" Width="300" 
+                                   TextWrapping="Wrap" Text="{Binding Price}" FontSize = "18" Margin="0,200,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            
+        </ListView>
+
 
     </Grid>
 </Page>

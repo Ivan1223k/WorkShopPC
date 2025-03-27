@@ -78,6 +78,7 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="PicturePart" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -390,6 +391,7 @@
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Stock" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UsedParts" Relationship="Self.FK_UsedParts_Parts" FromRole="Parts" ToRole="UsedParts" />
+          <Property Name="PicturePart" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -694,6 +696,7 @@
           <EntitySetMapping Name="Parts">
             <EntityTypeMapping TypeName="workshop_pcModel.Parts">
               <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="PicturePart" ColumnName="PicturePart" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PartName" ColumnName="PartName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

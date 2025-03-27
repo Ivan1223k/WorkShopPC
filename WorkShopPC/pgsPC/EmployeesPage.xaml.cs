@@ -16,18 +16,14 @@ using System.Windows.Shapes;
 namespace WorkShopPC.pgsPC
 {
     /// <summary>
-    /// Логика взаимодействия для PartsPage.xaml
+    /// Логика взаимодействия для EmployeesPage.xaml
     /// </summary>
-    public partial class PartsPage : Page
+    public partial class EmployeesPage : Page
     {
-        public PartsPage()
+        public EmployeesPage()
         {
             InitializeComponent();
-
-            var currentParts = Entities.GetContext().Parts.ToList();
-            ListParts.ItemsSource = currentParts;
-
-
+            DataGridEmployees.ItemsSource = Entities.GetContext().Employees.ToList();
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)

@@ -47,12 +47,22 @@ namespace WorkShopPC.wndPC
 
         private void ClientsButton_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new PartsPage());
+            AdminFrame.NavigationService.Navigate(new ClientsPage());
         }
 
         private void OrdersButton_Click(object sender, RoutedEventArgs e)
         {
             AdminFrame.NavigationService.Navigate(new OrdersPage());
+        }
+
+        private void PaymentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new PaymentsPage());
+        }
+
+        private void EmployeesButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new EmployeesPage());
         }
     }
 }

@@ -5,34 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkShopPC"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
+        Title="MainWindow" Height="500" Width="700">
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!--<StackPanel >
-            <TextBox x:Name="nameText" Text="FirstName"  TextWrapping="Wrap"  Width="120"/>
-            <TextBox x:Name="surnameText" Text="LastName"  TextWrapping="Wrap"  Width="120"/>
-            <ComboBox x:Name="positionComboBox"  Width="120">
-                <ComboBoxItem Content="Директор"/>
-                <ComboBoxItem Content="Специалист"/>
-            </ComboBox>
-            <TextBox x:Name="loginText" Text="Email"  TextWrapping="Wrap" Width="120"/>
-            <PasswordBox x:Name="passwordText" Width="120" Grid.RowSpan="2"/>
-            <TextBox x:Name="phoneText" Text="Phone" TextWrapping="Wrap" Width="120"/>
-            <Button x:Name="signUpButton" Content="Зарегистрироваться" Click="signUpButton_Click" Width="120"/>
-        </StackPanel>-->
-
+        
         <Button x:Name="SignUpWindowButton" Content="Зарегестрироваться" HorizontalAlignment="Right"
-                VerticalAlignment="Center" Margin="5" Width="120" Click="SignUpWindowButton_Click"/>
-
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-            <TextBox x:Name="loginTextBox" Text="leweutrourounne-2730@yopmail.com" Margin="2" Width="120"/>
-            <PasswordBox x:Name="passwordTextBox" Margin="2" Width="120"/>
-            <Button x:Name="signInButton" Content="Войти" Click="SignInButton_Click" Margin="10" Width="120"/>
-        </StackPanel>
+                VerticalAlignment="Center" Margin="5" Click="SignUpWindowButton_Click" Style="{StaticResource SignINUP }"/>
+        
+        
+        <Border Grid.Row="1" Style="{StaticResource RoundedStackPanelStyle}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+              
+                <TextBox x:Name="loginTextBox" Text="leweutrourounne-2730@yopmail.com" 
+                         Width="300" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
+                
+                <PasswordBox x:Name="passwordTextBox" Margin="2" Width="300" />
+                
+                <Button x:Name="signInButton" Content="Войти" Click="SignInButton_Click" 
+                        Width="200" Margin="10" Style="{StaticResource SignINUP }"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

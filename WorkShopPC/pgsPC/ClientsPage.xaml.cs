@@ -23,6 +23,12 @@ namespace WorkShopPC.pgsPC
         public ClientsPage()
         {
             InitializeComponent();
+            DataGridClients.ItemsSource = Entities.GetContext().Clients.ToList();
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

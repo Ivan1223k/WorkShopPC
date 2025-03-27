@@ -20,7 +20,6 @@ namespace WorkShopPC
         {
         }
 
-
         private static Entities _context;
 
         public static Entities GetContext()

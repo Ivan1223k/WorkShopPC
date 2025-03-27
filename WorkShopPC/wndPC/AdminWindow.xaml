@@ -5,52 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkShopPC.wndPC"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="AdminWindow" Height="650" Width="1100">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
+
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
 
+        <StackPanel>
+            <Button Content="Заказы" x:Name="OrdersButton"
+                    Style="{DynamicResource BurAdmUsr}" Click="OrdersButton_Click"/>
+            <Button Content="Запчасти" x:Name="PrtsButton" 
+                    Style="{DynamicResource BurAdmUsr}" Click="PrtsButton_Click"/>
+            <Button Content="Клиенты" x:Name="ClientsButton" 
+                    Style="{DynamicResource BurAdmUsr}" Click="ClientsButton_Click"/>
+            <Button Content="Прибыль" x:Name="PaymentsButton"
+                    Style="{DynamicResource BurAdmUsr}" Click="PaymentsButton_Click"/>
+            <Button Content="Работники" x:Name="EmployeesButton"
+                    Style="{DynamicResource BurAdmUsr}" Click="EmployeesButton_Click"/>
+        </StackPanel>
 
-        <Button Content="Заказы" x:Name="OrdersButton" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Click="OrdersButton_Click"/>
-        <Button Content="Запчасти" x:Name="PrtsButton" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="1" Click="PrtsButton_Click"/>
-        <Button Content="Клиенты" x:Name="ClientsButton" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="2" Click="ClientsButton_Click"/>
-        <Button Content="Прибыль" x:Name="nextstr4" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="3"/>
-        <Button Content="nextstr5" x:Name="nextstr5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="133" Height="39" Grid.Row="4"/>
-
-
-        <Frame x:Name="AdminFrame" Grid.Column="1" Grid.RowSpan="6" NavigationUIVisibility="Hidden" Source="/../pgsPC/OrdersPage.xaml"/>
-
-        <!--<DataGrid Grid.Row="0" Grid.Column="1" Name="DataGridOrders" Grid.RowSpan="6"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
-              VerticalAlignment="Center" HorizontalAlignment="Center">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Клиент" Binding="{Binding ClientID}"/>
-                <DataGridTextColumn Header="Устройство" Binding="{Binding DeviceID}"/>
-                <DataGridTextColumn Header="Дата заказа" Binding="{Binding OrderDate}"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Итого" Binding="{Binding TotalCost}"/>
-
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="ButtonEdit" Content="Редактировать" Click="ButtonEdit_Click" Background="White"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-            </DataGrid.Columns>
-        </DataGrid>-->
+        <Frame x:Name="AdminFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Source="/../pgsPC/OrdersPage.xaml"/>
 
     </Grid>
 </Window>
