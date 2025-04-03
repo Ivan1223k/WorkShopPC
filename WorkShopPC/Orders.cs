@@ -26,7 +26,7 @@ namespace WorkShopPC
         public int DeviceID { get; set; }
         public System.DateTime OrderDate { get; set; }
         public string Status { get; set; }
-        public decimal TotalCost { get; set; }
+        public Nullable<decimal> TotalCost { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual ICollection<CompletedWorks> CompletedWorks { get; set; }

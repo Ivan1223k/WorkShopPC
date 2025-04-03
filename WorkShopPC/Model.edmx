@@ -67,7 +67,7 @@
           <Property Name="DeviceID" Type="int" Nullable="false" />
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="TotalCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalCost" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Parts">
           <Key>
@@ -86,9 +86,9 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="PaymentDate" Type="date" Nullable="false" />
-          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PaymentDate" Type="date" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -374,7 +374,7 @@
           <Property Name="DeviceID" Type="Int32" Nullable="false" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
           <NavigationProperty Name="CompletedWorks" Relationship="Self.FK_CompletedWorks_Orders" FromRole="Orders" ToRole="CompletedWorks" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_Orders_Devices" FromRole="Orders" ToRole="Devices" />
@@ -399,9 +399,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Payments_Orders" FromRole="Payments" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Roles">

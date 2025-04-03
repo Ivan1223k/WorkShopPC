@@ -28,9 +28,12 @@
                     Style="{DynamicResource BurAdmUsr}" Click="EmployeesButton_Click"/>
         </StackPanel>
 
-
-        <Button Content="Новый заказ" x:Name="NewOrder" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Button Content="Новый заказ" x:Name="NewOrder" 
                     Style="{DynamicResource BurAdmUsr}" Click="NewOrder_Click"/>
+        </StackPanel>
+        
+        
 
         <Frame x:Name="AdminFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Source="/../pgsPC/OrdersPage.xaml"/>
 

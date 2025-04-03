@@ -15,14 +15,37 @@
         </Grid.RowDefinitions>
 
 
+        <Border Style="{StaticResource RoundedStackPanelStyle}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBox Text="Имя" x:Name="FirstNameBox" Width="200" Margin="2"
+                               Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Фамилия" x:Name="SecondNameBox" Margin="2"
+                               Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Телефон" x:Name="PhoneBox" Margin="2"
+                               Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Почта" x:Name="EmailBox" Margin="2"
+                               Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Адресс" x:Name="AddressBox" Margin="2"
+                               Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <DatePicker x:Name="OrderDateBox" Margin="2"/>
+                    <TextBox Text="Статус" x:Name="StatusTextBox"   Margin="2" 
+                               Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Тип девайса" x:Name="DeviceTypeBox" Margin="2"
+                                Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Брэнд" x:Name="BrandBox" Margin="2"
+                                Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Модель" x:Name="ModelBox" Margin="2"
+                                Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <TextBox Text="Серийный номер" x:Name="SerialNumberBox" Margin="2"
+                                Style="{StaticResource RoundedTextBoxStyle}"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Text="Имя" x:Name="FirstNameBox" Width="132" Height="34"/>
-            <TextBox Text="Фамилия" x:Name="SecondNameBox" Width="132" Height="34"/>
-            <TextBox Text="Телефон" x:Name="PhoneBox" Width="132" Height="34"/>
-            <TextBox Text="Почта" x:Name="EmailBox" Width="132" Height="34"/>
-            <TextBox Text="Адресс" x:Name="AddressBox" Width="132" Height="34"/>
-        </StackPanel>
+        <Button x:Name="SaveButton" Content="Сохранить" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+              Width="120" Style="{StaticResource SignINUP}" Click="SaveButton_Click"/>
 
     </Grid>
+
 </Page>
