@@ -21,7 +21,7 @@ namespace WorkShopPC.pgsPC
     /// </summary>
     public partial class NewOrder : Page
     {
-        public NewOrder()
+        public NewOrder(Orders orders)
         {
             InitializeComponent();
 

@@ -67,7 +67,7 @@ namespace WorkShopPC.wndPC
 
         private void NewOrder_Click(object sender, RoutedEventArgs e)
         {
-            AdminFrame.NavigationService.Navigate(new NewOrder());
+            AdminFrame.NavigationService.Navigate(new NewOrder(null));
         }
     }
 }

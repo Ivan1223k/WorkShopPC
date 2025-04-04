@@ -25,11 +25,12 @@ namespace WorkShopPC.pgsPC
             InitializeComponent();
             
             DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();
+     
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NewOrder());
+            NavigationService.Navigate(new NewOrder((sender as Button).DataContext as Orders));
         }
 
         private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
