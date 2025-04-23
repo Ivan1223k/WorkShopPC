@@ -10,15 +10,29 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" Name="DataGridOrders" AutoGenerateColumns="False" IsReadOnly="True"
-           VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" >
+        <TextBox x:Name="SearchOrdersName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchOrdersName_TextChanged" 
+                 Width="200" Height="30" Grid.Row="0"/>
+        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+
+        <ComboBox Name="SortOrdersCategory" HorizontalAlignment="Right" Grid.Row="1" DisplayMemberPath="Orders" SelectedItem="{Binding Status}"
+                  SelectionChanged="SortOrdersCategory_SelectionChanged" Width="265"/>
+        <TextBlock Text="Сортировать" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
+
+        <Button x:Name="CleanFilter" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"
+                Style="{DynamicResource BurAdmUsr}" Content="Очистить фильтр" Click="CleanFilter_Click"/>
+
+        <DataGrid Name="DataGridOrders" AutoGenerateColumns="False" IsReadOnly="True"
+           VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" Grid.Row="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Клиент" Binding="{Binding ClientID}"/>
-                <DataGridTextColumn Header="Устройство" Binding="{Binding DeviceID}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Clients.FirstName}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Clients.LastName}"/>
+                <DataGridTextColumn Header="Устройство" Binding="{Binding Devices.Brand}"/>
                 <DataGridTextColumn Header="Дата заказа" Binding="{Binding OrderDate}"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
                 <DataGridTextColumn Header="Итого" Binding="{Binding TotalCost}"/>
@@ -34,7 +48,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Удалить заказ" x:Name="DeleteOrderButton" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+        <Button Content="Удалить заказ" x:Name="DeleteOrderButton" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"
             Style="{DynamicResource BurAdmUsr}" Width="160"  Click="DeleteOrderButton_Click"/>
 
     </Grid>

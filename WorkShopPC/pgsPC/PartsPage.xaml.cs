@@ -34,5 +34,18 @@ namespace WorkShopPC.pgsPC
         {
 
         }
+
+        private void UpdateParts()
+        {
+            var currentOrder = Entities.GetContext().Parts.ToList();
+            currentOrder = currentOrder.Where(x =>
+        x.PartName.ToLower().Contains(SearchPartsName.Text.ToLower())).ToList();
+
+        }
+
+        private void SearchPartsName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateParts();
+        }
     }
 }

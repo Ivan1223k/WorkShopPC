@@ -9,15 +9,23 @@
       Title="EmployeesPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
-        <DataGrid Name="DataGridEmployees"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
-                VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}">
+        <TextBox x:Name="SearchEmplName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchEmplName_TextChanged" 
+         Width="200" Height="30" Grid.Row="0"/>
+        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+
+        <DataGrid Name="DataGridEmployees"  AutoGenerateColumns="False" IsReadOnly="True"
+                VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}"/>
                 <DataGridTextColumn Header="Почта" Binding="{Binding Email}"/>
-                
+
 
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>

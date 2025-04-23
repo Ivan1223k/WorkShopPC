@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace WorkShopPC.pgsPC
 {
@@ -25,7 +28,6 @@ namespace WorkShopPC.pgsPC
             InitializeComponent();
             
             DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();
-     
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
@@ -68,6 +70,31 @@ namespace WorkShopPC.pgsPC
                     MessageBox.Show("Ошибка при удалении: " + ex.Message);
                 }
             }
+        }
+
+        private void UpdateOrders() 
+        { 
+            var currentOrder = Entities.GetContext().Orders.ToList();
+            currentOrder = currentOrder.Where(x =>
+        x.Clients.FirstName.ToLower().Contains(SearchOrdersName.Text.ToLower())).ToList();
+
+            if (SortOrdersCategory.SelectedIndex == 0) DataGridOrders.ItemsSource = currentOrder.Where(x =>
+        x.Status.ToLower().Contains(SortOrdersCategory.Text.ToLower())).ToList();
+        }
+
+        private void SearchOrdersName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateOrders();
+        }
+
+        private void SortOrdersCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateOrders();
+        }
+
+        private void CleanFilter_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

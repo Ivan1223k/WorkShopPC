@@ -26,9 +26,23 @@ namespace WorkShopPC.pgsPC
             DataGridClients.ItemsSource = Entities.GetContext().Clients.ToList();
         }
 
+        private void UpdateClients()
+        {
+            var currentOrder = Entities.GetContext().Clients.ToList();
+            currentOrder = currentOrder.Where(x =>
+        x.FirstName.ToLower().Contains(SearchOrdersName.Text.ToLower())).ToList();
+
+        }
+
+
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SearchOrdersName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateClients();
         }
     }
 }

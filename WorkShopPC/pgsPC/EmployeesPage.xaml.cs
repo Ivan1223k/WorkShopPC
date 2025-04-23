@@ -30,5 +30,18 @@ namespace WorkShopPC.pgsPC
         {
 
         }
+
+        private void UpdateEmpls()
+        {
+            var currentOrder = Entities.GetContext().Employees.ToList();
+            currentOrder = currentOrder.Where(x =>
+        x.FirstName.ToLower().Contains(SearchEmplName.Text.ToLower())).ToList();
+
+        }
+
+        private void SearchEmplName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateEmpls();
+        }
     }
 }

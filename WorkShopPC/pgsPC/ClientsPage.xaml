@@ -9,8 +9,17 @@
       Title="ClientsPage">
 
     <Grid>
-        <DataGrid Name="DataGridClients"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
-      VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBox x:Name="SearchOrdersName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchOrdersName_TextChanged" 
+          Width="200" Height="30" Grid.Row="0"/>
+        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+
+        <DataGrid Name="DataGridClients"  AutoGenerateColumns="False" IsReadOnly="True"
+      VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>

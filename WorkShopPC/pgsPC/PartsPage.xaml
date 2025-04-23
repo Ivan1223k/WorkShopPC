@@ -9,9 +9,11 @@
       Title="PartsPage">
 
     <Grid>
-  
+        <TextBox x:Name="SearchPartsName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchPartsName_TextChanged" 
+   Width="200" Height="30"/>
+        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
 
-        <ListView Name="ListParts" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+        <ListView Name="ListParts" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,35,0,0"
           HorizontalContentAlignment="Center" Style="{DynamicResource RoundedListViewStyle}">
 
             <ListView.ItemContainerStyle>

@@ -9,9 +9,25 @@
       Title="PaymentsPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <DataGrid Name="DataGridPayments"  AutoGenerateColumns="False" IsReadOnly="True" Margin="10"
-VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}">
+        <ComboBox Name="SortOrdersCategory" HorizontalAlignment="Right" Grid.Row="0" DisplayMemberPath="Payments" SelectedItem="{Binding PaymentMethod}"
+                SelectionChanged="SortOrdersCategory_SelectionChanged"  Width="265"/>
+        <TextBlock Text="Сортировать" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
+
+        <Button x:Name="CleanFilter" HorizontalAlignment="Right" VerticalAlignment="Top"
+              Style="{DynamicResource BurAdmUsr}" Content="Очистить фильтр" Click="CleanFilter_Click" Grid.Row="2"/>
+        
+        
+        
+        
+
+        <DataGrid Name="DataGridPayments"  AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1"
+VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер заказа" Binding="{Binding OrderID}"/>
                 <DataGridTextColumn Header="Дата оплаты" Binding="{Binding PaymentDate}"/>

@@ -26,7 +26,26 @@ namespace WorkShopPC.pgsPC
             DataGridPayments.ItemsSource = Entities.GetContext().Payments.ToList();
         }
 
+        private void UpdatePayments()
+        {
+
+            var currentPayment = Entities.GetContext().Payments.ToList();
+
+            if (SortOrdersCategory.SelectedIndex == 0) DataGridPayments.ItemsSource = currentPayment.Where(x =>
+        x.PaymentMethod.ToLower().Contains(SortOrdersCategory.Text.ToLower())).ToList();
+        }
+
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePayments();
+        }
+
+        private void CleanFilter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SortOrdersCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
