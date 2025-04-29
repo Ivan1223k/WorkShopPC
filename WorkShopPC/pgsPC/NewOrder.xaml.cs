@@ -24,9 +24,31 @@ namespace WorkShopPC.pgsPC
         public NewOrder(Orders orders)
         {
             InitializeComponent();
+            //LoadOrerInfo(orders);
 
+
+            if (orders != null) _orders = orders;
+            DataContext = _orders;
         }
 
+        private Orders _orders = new Orders();
+
+        //private void LoadOrerInfo(Orders orders)
+        //{ 
+        //    using (var db = new Entities())
+        //    {
+        //        var orderinfo = db.Orders
+        //            .Where(o => o.ID == orders.ID)
+        //            .Join(db.Clients,
+        //                o => o.ClientID,
+        //                c => c.ID,
+        //            (o,c) => o)
+        //            .FirstOrDefault();
+
+                
+
+        //    }
+        //}
 
 
 
@@ -53,7 +75,6 @@ namespace WorkShopPC.pgsPC
 
             Orders _orders = new Orders
             {
-
                 OrderDate = DateTime.Parse(OrderDateBox.Text),
                 Status = StatusTextBox.Text
             };

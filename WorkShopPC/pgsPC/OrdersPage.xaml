@@ -20,7 +20,7 @@
                  Width="200" Height="30" Grid.Row="0"/>
         <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
 
-        <ComboBox Name="SortOrdersCategory" HorizontalAlignment="Right" Grid.Row="1" DisplayMemberPath="Orders" SelectedItem="{Binding Status}"
+        <ComboBox Name="SortOrdersCategory" HorizontalAlignment="Right" Grid.Row="1" DisplayMemberPath="Status" SelectedItem="{Binding Status}"
                   SelectionChanged="SortOrdersCategory_SelectionChanged" Width="265"/>
         <TextBlock Text="Сортировать" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
 

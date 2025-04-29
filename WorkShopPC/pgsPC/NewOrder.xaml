@@ -18,9 +18,9 @@
         <Border Style="{StaticResource RoundedStackPanelStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBox Text="Имя" x:Name="FirstNameBox" Width="200" Margin="2"
+                    <TextBox Text="{Binding Clients.FirstName}" x:Name="FirstNameBox" Width="200" Margin="2"
                                Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Фамилия" x:Name="SecondNameBox" Margin="2"
+                    <TextBox Text="{Binding Clients.LastName}" x:Name="SecondNameBox" Margin="2"
                                Style="{StaticResource RoundedTextBoxStyle}"/>
                     <TextBox Text="Телефон" x:Name="PhoneBox" Margin="2"
                                Style="{StaticResource RoundedTextBoxStyle}"/>

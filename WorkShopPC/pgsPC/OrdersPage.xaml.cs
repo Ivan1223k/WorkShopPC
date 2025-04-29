@@ -75,15 +75,16 @@ namespace WorkShopPC.pgsPC
         private void UpdateOrders() 
         { 
             var currentOrder = Entities.GetContext().Orders.ToList();
-            currentOrder = currentOrder.Where(x =>
+            DataGridOrders.ItemsSource = currentOrder.Where(x =>
         x.Clients.FirstName.ToLower().Contains(SearchOrdersName.Text.ToLower())).ToList();
+            
 
-            if (SortOrdersCategory.SelectedIndex == 0) DataGridOrders.ItemsSource = currentOrder.Where(x =>
-        x.Status.ToLower().Contains(SortOrdersCategory.Text.ToLower())).ToList();
+            //    if (SortOrdersCategory.SelectedIndex == 0) DataGridOrders.ItemsSource = currentOrder.Where(x =>
+            //x.Status.ToLower().Contains(SortOrdersCategory.Text.ToLower())).ToList();
         }
 
         private void SearchOrdersName_TextChanged(object sender, TextChangedEventArgs e)
-        {
+       {
             UpdateOrders();
         }
 
