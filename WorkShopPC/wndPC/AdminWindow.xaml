@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkShopPC.wndPC"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="Мастерская(Администратор)" Height="650" Width="1100">
     <Grid>
+
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel>
+            <Button Content="Мой профиль" x:Name="ProfileButton" Margin="0,0,0,10"
+                    Style="{DynamicResource BurAdmUsr}" Click="ProfileButton_Click"/>
+            <Button Content="Заказ" x:Name="OrdersButton" Width="180"
+                    Style="{DynamicResource BurAdmUsr}" Click="OrdersButton_Click"/>
+            <Button Content="Склад" x:Name="PrtsButton"  Width="180"
+                    Style="{DynamicResource BurAdmUsr}" Click="PrtsButton_Click"/>
+            <Button Content="Клиенты" x:Name="ClientsButton" Width="180"
+                    Style="{DynamicResource BurAdmUsr}" Click="ClientsButton_Click"/>
+            <Button Content="Прибыль" x:Name="PaymentsButton" Width="180"
+                    Style="{DynamicResource BurAdmUsr}" Click="PaymentsButton_Click"/>
+            <Button Content="Работники" x:Name="EmployeesButton" Width="180"
+                    Style="{DynamicResource BurAdmUsr}" Click="EmployeesButton_Click"/>
+            
+            <Button Content="Отчеты" x:Name="ReportButton" Width="180" Margin="0,10,0,0"
+                    Style="{DynamicResource BurAdmUsr}" Click="ReportButton_Click"/>
+        </StackPanel>
+
+        
+        <Button Content="Новый заказ" x:Name="NewOrder" VerticalAlignment="Bottom"
+                   Style="{DynamicResource BurAdmUsr}" Click="NewOrder_Click" Width="180"/> 
+        
+        
+        
+
+        <Frame x:Name="AdminFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Source="/../pgsPC/OrdersPage.xaml"/>
+
     </Grid>
 </Window>

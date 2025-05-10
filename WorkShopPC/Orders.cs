@@ -24,13 +24,14 @@ namespace WorkShopPC
         public int ID { get; set; }
         public int ClientID { get; set; }
         public int DeviceID { get; set; }
-        public System.DateTime OrderDate { get; set; }
-        public string Status { get; set; }
-        public decimal TotalCost { get; set; }
+        public Nullable<System.DateTime> OrderDate { get; set; }
+        public int StatusID { get; set; }
+        public Nullable<decimal> TotalCost { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual ICollection<CompletedWorks> CompletedWorks { get; set; }
         public virtual Devices Devices { get; set; }
+        public virtual Status Status { get; set; }
         public virtual ICollection<Payments> Payments { get; set; }
         public virtual ICollection<UsedParts> UsedParts { get; set; }
     }

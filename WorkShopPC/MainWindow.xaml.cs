@@ -26,6 +26,7 @@ namespace WorkShopPC
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -122,16 +123,20 @@ namespace WorkShopPC
             using (var db = new Entities())
             {
                 var user = db.Employees.AsNoTracking().FirstOrDefault(em => em.Email == loginTextBox.Text && em.Password == _password);
-                if (user == null) { MessageBox.Show("Пользователь с такими данными не найден!"); return; }
+                if (user == null)
+                {
+                    MessageBox.Show("Пользователь с такими данными не найден!");
+                    return;
+                }
                 if (user.RoleID == 1)
                 {
-                    var newWindow = new UserWindow(user);
+                    var newWindow = new AdminWindow(user);
                     newWindow.Show();
                     this.Close();
                 }
-                else
+            else
                 {
-                    var newWindow = new AdminWindow(user);
+                    var newWindow = new UserWindow(user);
                     newWindow.Show();
                     this.Close();
                 }

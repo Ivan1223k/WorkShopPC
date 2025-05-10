@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище workshop_pcModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище workshop_pcModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="ID" />
@@ -24,40 +24,29 @@
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="WorkID" Type="int" Nullable="false" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
-          <Property Name="CompletionDate" Type="date" Nullable="false" />
+          <Property Name="CompletionDate" Type="date" />
         </EntityType>
         <EntityType Name="Devices">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DeviceType" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeviceType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="Position" Type="nvarchar" MaxLength="50" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="19" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="320" Nullable="false" />
-          <Property Name="RoleID" Type="int" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Feedback">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientID" Type="int" Nullable="false" />
-          <Property Name="Rating" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="FeedbackDate" Type="date" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="60" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="60" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="19" />
+          <Property Name="Email" Type="nvarchar" MaxLength="320" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -66,19 +55,27 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientID" Type="int" Nullable="false" />
           <Property Name="DeviceID" Type="int" Nullable="false" />
-          <Property Name="OrderDate" Type="date" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="TotalCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="OrderDate" Type="date" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="TotalCost" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Parts">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PartName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="PartName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="PicturePart" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentMethodName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -86,16 +83,23 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="PaymentDate" Type="date" Nullable="false" />
-          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PaymentDate" Type="date" />
+          <Property Name="PaymentMethodID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -114,16 +118,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="PartID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="Works">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="WorkName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="WorkName" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <Association Name="FK_CompletedWorks_Employees">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
@@ -162,7 +166,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employees_Roles">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
@@ -170,18 +174,6 @@
             </Principal>
             <Dependent Role="Employees">
               <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Feedback_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
-          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Feedback">
-              <PropertyRef Name="ClientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -209,6 +201,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Payments_Orders">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
@@ -218,6 +222,18 @@
             </Principal>
             <Dependent Role="Payments">
               <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_PaymentMethods">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PaymentMethodID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -250,11 +266,12 @@
           <EntitySet Name="CompletedWorks" EntityType="Self.CompletedWorks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedParts" EntityType="Self.UsedParts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Works" EntityType="Self.Works" Schema="dbo" store:Type="Tables" />
@@ -274,10 +291,6 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_Feedback_Clients" Association="Self.FK_Feedback_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Feedback" EntitySet="Feedback" />
-          </AssociationSet>
           <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Orders" EntitySet="Orders" />
@@ -286,8 +299,16 @@
             <End Role="Devices" EntitySet="Devices" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status" Association="Self.FK_Orders_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Payments_Orders" Association="Self.FK_Payments_Orders">
             <End Role="Orders" EntitySet="Orders" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_PaymentMethods" Association="Self.FK_Payments_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
           <AssociationSet Name="FK_UsedParts_Orders" Association="Self.FK_UsedParts_Orders">
@@ -299,8 +320,7 @@
             <End Role="UsedParts" EntitySet="UsedParts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="workshop_pcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -314,7 +334,6 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="19" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Clients" FromRole="Clients" ToRole="Feedback" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Clients" FromRole="Clients" ToRole="Orders" />
         </EntityType>
         <EntityType Name="CompletedWorks">
@@ -325,7 +344,7 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="WorkID" Type="Int32" Nullable="false" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="CompletionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_CompletedWorks_Employees" FromRole="CompletedWorks" ToRole="Employees" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_CompletedWorks_Orders" FromRole="CompletedWorks" ToRole="Orders" />
           <NavigationProperty Name="Works" Relationship="Self.FK_CompletedWorks_Works" FromRole="CompletedWorks" ToRole="Works" />
@@ -335,10 +354,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DeviceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeviceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Devices" FromRole="Devices" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Employees">
@@ -346,26 +365,14 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="19" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CompletedWorks" Relationship="Self.FK_CompletedWorks_Employees" FromRole="Employees" ToRole="CompletedWorks" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Employees_Roles" FromRole="Employees" ToRole="Roles" />
-        </EntityType>
-        <EntityType Name="Feedback">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientID" Type="Int32" Nullable="false" />
-          <Property Name="Rating" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FeedbackDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_Feedback_Clients" FromRole="Feedback" ToRole="Clients" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -374,12 +381,13 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientID" Type="Int32" Nullable="false" />
           <Property Name="DeviceID" Type="Int32" Nullable="false" />
-          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
           <NavigationProperty Name="CompletedWorks" Relationship="Self.FK_CompletedWorks_Orders" FromRole="Orders" ToRole="CompletedWorks" />
           <NavigationProperty Name="Devices" Relationship="Self.FK_Orders_Devices" FromRole="Orders" ToRole="Devices" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Orders_Status" FromRole="Orders" ToRole="Status" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Orders" FromRole="Orders" ToRole="Payments" />
           <NavigationProperty Name="UsedParts" Relationship="Self.FK_UsedParts_Orders" FromRole="Orders" ToRole="UsedParts" />
         </EntityType>
@@ -388,11 +396,20 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PartName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="PartName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="PicturePart" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="UsedParts" Relationship="Self.FK_UsedParts_Parts" FromRole="Parts" ToRole="UsedParts" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_PaymentMethods" FromRole="PaymentMethods" ToRole="Payments" />
+          <Property Name="PaymentMethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -400,18 +417,27 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="PaymentMethodID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Payments_Orders" FromRole="Payments" ToRole="Orders" />
+          <NavigationProperty Name="PaymentMethods" Relationship="Self.FK_Payments_PaymentMethods" FromRole="Payments" ToRole="PaymentMethods" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Roles" FromRole="Roles" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Status" FromRole="Status" ToRole="Orders" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -430,7 +456,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="PartID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_UsedParts_Orders" FromRole="UsedParts" ToRole="Orders" />
           <NavigationProperty Name="Parts" Relationship="Self.FK_UsedParts_Parts" FromRole="UsedParts" ToRole="Parts" />
         </EntityType>
@@ -439,23 +465,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WorkName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WorkName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="CompletedWorks" Relationship="Self.FK_CompletedWorks_Works" FromRole="Works" ToRole="CompletedWorks" />
         </EntityType>
-        <Association Name="FK_Feedback_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
-          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Feedback">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Orders_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -517,7 +531,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employees_Roles">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
@@ -525,6 +539,18 @@
             </Principal>
             <Dependent Role="Employees">
               <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="StatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -564,23 +590,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payments_PaymentMethods">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Clients" />
           <EntitySet Name="CompletedWorks" EntityType="Self.CompletedWorks" />
           <EntitySet Name="Devices" EntityType="Self.Devices" />
           <EntitySet Name="Employees" EntityType="Self.Employees" />
-          <EntitySet Name="Feedback" EntityType="Self.Feedback" />
           <EntitySet Name="Orders" EntityType="Self.Orders" />
           <EntitySet Name="Parts" EntityType="Self.Parts" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" />
           <EntitySet Name="Payments" EntityType="Self.Payments" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="UsedParts" EntityType="Self.UsedParts" />
           <EntitySet Name="Works" EntityType="Self.Works" />
-          <AssociationSet Name="FK_Feedback_Clients" Association="Self.FK_Feedback_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Feedback" EntitySet="Feedback" />
-          </AssociationSet>
           <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Orders" EntitySet="Orders" />
@@ -605,6 +640,10 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status" Association="Self.FK_Orders_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Payments_Orders" Association="Self.FK_Payments_Orders">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Payments" EntitySet="Payments" />
@@ -616,6 +655,10 @@
           <AssociationSet Name="FK_UsedParts_Parts" Association="Self.FK_UsedParts_Parts">
             <End Role="Parts" EntitySet="Parts" />
             <End Role="UsedParts" EntitySet="UsedParts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_PaymentMethods" Association="Self.FK_Payments_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -664,22 +707,10 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Feedback">
-            <EntityTypeMapping TypeName="workshop_pcModel.Feedback">
-              <MappingFragment StoreEntitySet="Feedback">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="FeedbackDate" ColumnName="FeedbackDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -690,7 +721,7 @@
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -703,6 +734,15 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="PicturePart" ColumnName="PicturePart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="workshop_pcModel.PaymentMethods">
+              <MappingFragment StoreEntitySet="PaymentMethods">
+                <ScalarProperty Name="PaymentMethodName" ColumnName="PaymentMethodName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -712,7 +752,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -722,6 +762,14 @@
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="workshop_pcModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

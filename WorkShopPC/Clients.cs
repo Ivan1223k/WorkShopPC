@@ -16,7 +16,6 @@ namespace WorkShopPC
     {
         public Clients()
         {
-            this.Feedback = new HashSet<Feedback>();
             this.Orders = new HashSet<Orders>();
         }
     
@@ -27,7 +26,6 @@ namespace WorkShopPC
         public string Email { get; set; }
         public string Address { get; set; }
     
-        public virtual ICollection<Feedback> Feedback { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
     }
 }

@@ -10,6 +10,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using WorkShopPC.pgsPC;
 using System.Windows.Shapes;
 
 namespace WorkShopPC.wndPC
@@ -19,16 +21,56 @@ namespace WorkShopPC.wndPC
     /// </summary>
     public partial class AdminWindow : Window
     {
-        private Employees user;
-
-        public AdminWindow()
-        {
-            InitializeComponent();
-        }
+        public Employees user;
 
         public AdminWindow(Employees user)
         {
+            InitializeComponent();
             this.user = user;
+
+        }
+
+        private void PrtsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new PartsPage());
+        }
+
+        private void ClientsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new ClientsPage());
+        }
+
+        private void OrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new OrdersPage());
+        }
+
+        private void PaymentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new PaymentsPage());
+        }
+
+        private void EmployeesButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new EmployeesPage());
+        }
+
+        private void NewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new NewOrder(null));
+        }
+
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            AdminFrame.NavigationService.Navigate(new Profile(user));
+
+        }
+
+        private void ReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new Report();
+            newWindow.Show();
         }
     }
 }

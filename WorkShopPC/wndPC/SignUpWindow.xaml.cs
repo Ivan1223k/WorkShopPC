@@ -80,7 +80,6 @@ namespace WorkShopPC.wndPC
                 else
 
                 {
-                    string selectedPosition = (positionComboBox.SelectedItem as ComboBoxItem).Content.ToString();
                     Entities db = new Entities();
                     Employees userObject = new Employees
                     {
@@ -88,8 +87,7 @@ namespace WorkShopPC.wndPC
                         LastName = surnameText.Text,
                         Email = loginText.Text,
                         Password = GetHash(passwordText.Password),
-                        Position = selectedPosition,
-                        RoleID = 1,
+                        RoleID = 2,
                         PhoneNumber = phoneText.Text,
                     };
 

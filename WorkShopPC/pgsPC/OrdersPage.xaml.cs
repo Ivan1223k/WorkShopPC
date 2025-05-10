@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+using System.Data.Entity;
+
+namespace WorkShopPC.pgsPC
+{
+    /// <summary>
+    /// Логика взаимодействия для OrdersPage.xaml
+    /// </summary>
+    public partial class OrdersPage : Page
+    {
+        public OrdersPage()
+        {
+            InitializeComponent();
+
+
+
+            DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();   
+            SortOrdersCategory.ItemsSource = Entities.GetContext().Status.ToList();
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new NewOrder((sender as Button).DataContext as Orders));
+        }
+
+        private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ordersForRemoving = DataGridOrders.SelectedItems.Cast<Orders>().ToList();
+
+            if (ordersForRemoving.Count == 0)
+            {
+                MessageBox.Show("Выберите заказы для удаления!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"Вы точно хотите удалить {ordersForRemoving.Count} записей?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    var context = Entities.GetContext();
+
+                    
+                    foreach (var order in ordersForRemoving)
+                    {
+                        context.Orders.Remove(order);
+                    }
+
+                    context.SaveChanges();
+
+                    MessageBox.Show("Данные успешно удалены!");
+
+                    
+                    DataGridOrders.ItemsSource = context.Orders.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                }
+            }
+        }
+
+        private void UpdateOrders()
+        {
+            var context = Entities.GetContext();
+
+            var currentOrders = context.Orders
+                .Include(o => o.Status)
+                .Include(o => o.Clients)
+                .Include(o => o.Devices)
+                .ToList();
+
+            
+            if (!string.IsNullOrWhiteSpace(SearchOrdersName.Text))
+            {
+                currentOrders = currentOrders
+                    .Where(x => x.Clients.FirstName
+                        .ToLower()
+                        .Contains(SearchOrdersName.Text.ToLower()))
+                    .ToList();
+            }
+
+            // Фильтрация по статусу
+            if (SortOrdersCategory.SelectedItem is Status selectedStatus)
+            {
+                currentOrders = currentOrders
+                    .Where(x => x.StatusID == selectedStatus.ID)
+                    .ToList();
+            }
+
+            DataGridOrders.ItemsSource = currentOrders;
+        }
+
+        private void SearchOrdersName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateOrders();
+        }
+
+        private void SortOrdersCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateOrders();
+        }
+
+        private void CleanFilter_Click(object sender, RoutedEventArgs e)
+        {
+            SearchOrdersName.Text = "";
+            SortOrdersCategory.SelectedItem = null;
+            UpdateOrders();
+        }
+    }
+}

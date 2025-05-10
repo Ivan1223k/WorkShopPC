@@ -1,0 +1,64 @@
+﻿<Page x:Class="WorkShopPC.pgsPC.OrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorkShopPC.pgsPC"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrdersPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <WrapPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                <TextBlock Text="Введите название" VerticalAlignment="Center" Style="{StaticResource CustomTextBlockStyle2}" Margin="0,0,20,0"/>
+                <TextBox x:Name="SearchOrdersName" TextChanged="SearchOrdersName_TextChanged" 
+                     Width="220" Height="30" Style="{StaticResource RoundedTextBoxStyle}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="Сортировать" Style="{StaticResource CustomTextBlockStyle2}" VerticalAlignment="Center" Margin="10,0,20,0"/>
+                <ComboBox Name="SortOrdersCategory" DisplayMemberPath="StatusName" SelectedItem="{Binding StatusID}"
+              SelectionChanged="SortOrdersCategory_SelectionChanged" Width="220" Height="30" Style="{StaticResource RoundedComboBoxStyle}"/>
+            </StackPanel>
+        </WrapPanel>
+      
+
+        
+        <Button x:Name="CleanFilter" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"
+                Style="{DynamicResource BurAdmUsr}" Content="Очистить фильтр" Click="CleanFilter_Click"/>
+
+        <DataGrid Name="DataGridOrders" AutoGenerateColumns="False" IsReadOnly="True"
+           VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Clients.FirstName}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Clients.LastName}"/>
+                <DataGridTextColumn Header="Устройство" Binding="{Binding Devices.Brand}"/>
+                <DataGridTextColumn Header="Дата заказа" Binding="{Binding OrderDate}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}"/>
+                <DataGridTextColumn Header="Итого" Binding="{Binding TotalCost}"/>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ButtonEdit" Content="Редактировать" Click="ButtonEdit_Click" Background="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Удалить заказ" x:Name="DeleteOrderButton" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"
+            Style="{DynamicResource BurAdmUsr}" Width="160"  Click="DeleteOrderButton_Click"/>
+
+    </Grid>
+</Page>

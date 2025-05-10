@@ -12,14 +12,16 @@ namespace WorkShopPC
     using System;
     using System.Collections.Generic;
     
-    public partial class Feedback
+    public partial class PaymentMethods
     {
-        public int ID { get; set; }
-        public int ClientID { get; set; }
-        public int Rating { get; set; }
-        public string Comment { get; set; }
-        public System.DateTime FeedbackDate { get; set; }
+        public PaymentMethods()
+        {
+            this.Payments = new HashSet<Payments>();
+        }
     
-        public virtual Clients Clients { get; set; }
+        public int ID { get; set; }
+        public string PaymentMethodName { get; set; }
+    
+        public virtual ICollection<Payments> Payments { get; set; }
     }
 }

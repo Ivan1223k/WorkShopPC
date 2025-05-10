@@ -12,16 +12,16 @@ namespace WorkShopPC
     using System;
     using System.Collections.Generic;
     
-    public partial class CompletedWorks
+    public partial class Status
     {
-        public int ID { get; set; }
-        public int OrderID { get; set; }
-        public int WorkID { get; set; }
-        public int EmployeeID { get; set; }
-        public Nullable<System.DateTime> CompletionDate { get; set; }
+        public Status()
+        {
+            this.Orders = new HashSet<Orders>();
+        }
     
-        public virtual Employees Employees { get; set; }
-        public virtual Orders Orders { get; set; }
-        public virtual Works Works { get; set; }
+        public int ID { get; set; }
+        public string StatusName { get; set; }
+    
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

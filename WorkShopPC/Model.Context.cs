@@ -38,11 +38,12 @@ namespace WorkShopPC
         public DbSet<CompletedWorks> CompletedWorks { get; set; }
         public DbSet<Devices> Devices { get; set; }
         public DbSet<Employees> Employees { get; set; }
-        public DbSet<Feedback> Feedback { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Parts> Parts { get; set; }
+        public DbSet<PaymentMethods> PaymentMethods { get; set; }
         public DbSet<Payments> Payments { get; set; }
         public DbSet<Roles> Roles { get; set; }
+        public DbSet<Status> Status { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<UsedParts> UsedParts { get; set; }
         public DbSet<Works> Works { get; set; }

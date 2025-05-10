@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WorkShopPC.pgsPC;
 
 namespace WorkShopPC.wndPC
 {
@@ -19,15 +20,39 @@ namespace WorkShopPC.wndPC
     /// </summary>
     public partial class UserWindow : Window
     {
-        private Employees user;
+        public Employees user;
 
-        public UserWindow()
-        {
-            InitializeComponent();
-        }
         public UserWindow(Employees user)
         {
+            InitializeComponent();
             this.user = user;
+            
+        }
+
+
+        private void NewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new NewOrder(null));
+        }
+
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new Profile(user));
+        }
+
+        private void OrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new OrdersPage());
+        }
+
+        private void PrtsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new PartsPage());
+        }
+
+        private void ClientsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.NavigationService.Navigate(new ClientsPage());
         }
     }
 }
