@@ -28,21 +28,57 @@ namespace WorkShopPC.pgsPC
 
         private void UpdateClients()
         {
-            var currentOrder = Entities.GetContext().Clients.ToList();
-            currentOrder = currentOrder.Where(x =>
-        x.FirstName.ToLower().Contains(SearchOrdersName.Text.ToLower())).ToList();
-
-        }
-
-
-        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
+            var currentClients = Entities.GetContext().Clients.ToList();
+            DataGridClients.ItemsSource = currentClients.Where(x =>
+        (x.FirstName + " " + x.LastName).ToLower().Contains(SearchOrdersName.Text.ToLower())).ToList();
 
         }
 
         private void SearchOrdersName_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateClients();
+        }
+
+        private void ButtonCheck_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new InfotamatinClients((sender as Button).DataContext as Clients));
+        }
+
+        private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ClientsForRemoving = DataGridClients.SelectedItems.Cast<Clients>().ToList();
+
+            if (ClientsForRemoving.Count == 0)
+            {
+                MessageBox.Show("Выберите заказы для удаления!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"Вы точно хотите удалить {ClientsForRemoving.Count} записей?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    var context = Entities.GetContext();
+
+
+                    foreach (var client in ClientsForRemoving)
+                    {
+                        context.Clients.Remove(client);
+                    }
+
+                    context.SaveChanges();
+
+                    MessageBox.Show("Данные успешно удалены!");
+
+
+                    DataGridClients.ItemsSource = context.Clients.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                }
+            }
         }
     }
 }

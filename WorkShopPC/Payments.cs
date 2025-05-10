@@ -17,9 +17,10 @@ namespace WorkShopPC
         public int ID { get; set; }
         public int OrderID { get; set; }
         public Nullable<System.DateTime> PaymentDate { get; set; }
-        public string PaymentMethod { get; set; }
+        public int PaymentMethodID { get; set; }
         public Nullable<decimal> Amount { get; set; }
     
         public virtual Orders Orders { get; set; }
+        public virtual PaymentMethods PaymentMethods { get; set; }
     }
 }

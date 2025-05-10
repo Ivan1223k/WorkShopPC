@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkShopPC"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -19,10 +19,12 @@
         
         <Border Grid.Row="1" Style="{StaticResource RoundedStackPanelStyle}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-              
+
+                <TextBlock Text="Логин(Email):" Style="{StaticResource CustomTextBlockStyle2}"/>
                 <TextBox x:Name="loginTextBox" Text="leweutrourounne-2730@yopmail.com" 
                          Width="300" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
                 
+                <TextBlock Text="Пароль" Style="{StaticResource CustomTextBlockStyle2}"/>
                 <PasswordBox x:Name="passwordTextBox" Margin="2" Width="300" />
                 
                 <Button x:Name="signInButton" Content="Войти" Click="SignInButton_Click" 

@@ -22,7 +22,7 @@ namespace WorkShopPC
         public int ID { get; set; }
         public string WorkName { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public Nullable<decimal> Price { get; set; }
     
         public virtual ICollection<CompletedWorks> CompletedWorks { get; set; }
     }

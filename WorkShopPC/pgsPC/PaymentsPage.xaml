@@ -15,9 +15,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ComboBox Name="SortOrdersCategory" HorizontalAlignment="Right" Grid.Row="0" DisplayMemberPath="Payments" SelectedItem="{Binding PaymentMethod}"
-                SelectionChanged="SortOrdersCategory_SelectionChanged"  Width="265"/>
-        <TextBlock Text="Сортировать" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text="Сортировать" Style="{StaticResource CustomTextBlockStyle2}" VerticalAlignment="Center" Margin="10,0,20,0"/>
+            <ComboBox Name="SortPaymentCategory" DisplayMemberPath="PaymentMethodName" SelectedItem="{Binding PaymentMethodID}"
+                SelectionChanged="SortOrdersCategory_SelectionChanged" Width="220" Height="30" Style="{StaticResource RoundedComboBoxStyle}"/>
+        </StackPanel>
 
         <Button x:Name="CleanFilter" HorizontalAlignment="Right" VerticalAlignment="Top"
               Style="{DynamicResource BurAdmUsr}" Content="Очистить фильтр" Click="CleanFilter_Click" Grid.Row="2"/>
@@ -31,7 +33,7 @@ VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource Rou
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер заказа" Binding="{Binding OrderID}"/>
                 <DataGridTextColumn Header="Дата оплаты" Binding="{Binding PaymentDate}"/>
-                <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethod}"/>
+                <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethods.PaymentMethodName}"/>
                 <DataGridTextColumn Header="Сумма" Binding="{Binding Amount}"/>
 
                 <DataGridTemplateColumn Width="*">

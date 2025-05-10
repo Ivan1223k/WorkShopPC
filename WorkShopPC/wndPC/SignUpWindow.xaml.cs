@@ -87,7 +87,7 @@ namespace WorkShopPC.wndPC
                         LastName = surnameText.Text,
                         Email = loginText.Text,
                         Password = GetHash(passwordText.Password),
-                        RoleID = 1,
+                        RoleID = 2,
                         PhoneNumber = phoneText.Text,
                     };
 

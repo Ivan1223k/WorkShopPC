@@ -17,7 +17,7 @@ namespace WorkShopPC
         public int ID { get; set; }
         public int OrderID { get; set; }
         public int PartID { get; set; }
-        public int Quantity { get; set; }
+        public Nullable<int> Quantity { get; set; }
     
         public virtual Orders Orders { get; set; }
         public virtual Parts Parts { get; set; }

@@ -1,0 +1,56 @@
+﻿<Page x:Class="WorkShopPC.pgsPC.Profile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorkShopPC.pgsPC"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Profile">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="profil.png" Width="200" Height="200"
+               HorizontalAlignment="Center"  />
+
+        <Border Grid.Row="1" Style="{StaticResource RoundedStackPanelStyle}">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Имя и фамилия -->
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Имя и фамилия:" Style="{StaticResource CustomTextBlockStyle}" />
+                    <TextBlock Text="{Binding FullName}" Style="{StaticResource CustomTextBlockStyle2}" />
+                </StackPanel>
+
+                <!-- Телефон -->
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Телефон:" Style="{StaticResource CustomTextBlockStyle}" />
+                    <TextBlock Text="{Binding Phone}" Style="{StaticResource CustomTextBlockStyle2}" />
+                </StackPanel>
+
+                <!-- Email -->
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="Email (логин):" Style="{StaticResource CustomTextBlockStyle}" />
+                    <TextBlock Text="{Binding Login}" Style="{StaticResource CustomTextBlockStyle2}" />
+                </StackPanel>
+
+                <!-- Роль -->
+                <StackPanel Grid.Row="3">
+                    <TextBlock Text="Роль:" Style="{StaticResource CustomTextBlockStyle}" />
+                    <TextBlock Text="{Binding Role}" Style="{StaticResource CustomTextBlockStyle2}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>

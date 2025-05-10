@@ -16,14 +16,23 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="SearchOrdersName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchOrdersName_TextChanged" 
-                 Width="200" Height="30" Grid.Row="0"/>
-        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
 
-        <ComboBox Name="SortOrdersCategory" HorizontalAlignment="Right" Grid.Row="1" DisplayMemberPath="Status" SelectedItem="{Binding Status}"
-                  SelectionChanged="SortOrdersCategory_SelectionChanged" Width="265"/>
-        <TextBlock Text="Сортировать" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
+        <WrapPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                <TextBlock Text="Введите название" VerticalAlignment="Center" Style="{StaticResource CustomTextBlockStyle2}" Margin="0,0,20,0"/>
+                <TextBox x:Name="SearchOrdersName" TextChanged="SearchOrdersName_TextChanged" 
+                     Width="220" Height="30" Style="{StaticResource RoundedTextBoxStyle}"/>
+            </StackPanel>
 
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="Сортировать" Style="{StaticResource CustomTextBlockStyle2}" VerticalAlignment="Center" Margin="10,0,20,0"/>
+                <ComboBox Name="SortOrdersCategory" DisplayMemberPath="StatusName" SelectedItem="{Binding StatusID}"
+              SelectionChanged="SortOrdersCategory_SelectionChanged" Width="220" Height="30" Style="{StaticResource RoundedComboBoxStyle}"/>
+            </StackPanel>
+        </WrapPanel>
+      
+
+        
         <Button x:Name="CleanFilter" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"
                 Style="{DynamicResource BurAdmUsr}" Content="Очистить фильтр" Click="CleanFilter_Click"/>
 
@@ -34,7 +43,7 @@
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Clients.LastName}"/>
                 <DataGridTextColumn Header="Устройство" Binding="{Binding Devices.Brand}"/>
                 <DataGridTextColumn Header="Дата заказа" Binding="{Binding OrderDate}"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}"/>
                 <DataGridTextColumn Header="Итого" Binding="{Binding TotalCost}"/>
 
                 <DataGridTemplateColumn Width="*">

@@ -8,44 +8,148 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NewOrder">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <!-- Информация о клиенте -->
+            <Border Style="{StaticResource CustomBorderStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource RoundedStackPanelStyle}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBox Text="{Binding Clients.FirstName}" x:Name="FirstNameBox" Width="200" Margin="2"
-                               Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="{Binding Clients.LastName}" x:Name="SecondNameBox" Margin="2"
-                               Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Телефон" x:Name="PhoneBox" Margin="2"
-                               Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Почта" x:Name="EmailBox" Margin="2"
-                               Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Адресс" x:Name="AddressBox" Margin="2"
-                               Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <DatePicker x:Name="OrderDateBox" Margin="2"/>
-                    <TextBox Text="Статус" x:Name="StatusTextBox"   Margin="2" 
-                               Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Тип девайса" x:Name="DeviceTypeBox" Margin="2"
-                                Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Брэнд" x:Name="BrandBox" Margin="2"
-                                Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Модель" x:Name="ModelBox" Margin="2"
-                                Style="{StaticResource RoundedTextBoxStyle}"/>
-                    <TextBox Text="Серийный номер" x:Name="SerialNumberBox" Margin="2"
-                                Style="{StaticResource RoundedTextBoxStyle}"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Первая колонка -->
+                    <TextBlock Text="Информация о клиенте" Style="{StaticResource CustomTextBlockStyle2}"/>
+                    
+                    <TextBlock Text="Имя" Style="{StaticResource CustomTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                    <TextBox Text="{Binding Clients.FirstName}" x:Name="FirstNameBox" Style="{StaticResource RoundedTextBoxStyle}" Margin="5" Grid.Row="1" Grid.Column="1"/>
+
+                    <TextBlock Text="Фамилия" Style="{StaticResource CustomTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                    <TextBox Text="{Binding Clients.LastName}" x:Name="SecondNameBox" Style="{StaticResource RoundedTextBoxStyle}" Margin="5" Grid.Row="2" Grid.Column="1"/>
+
+                    <TextBlock Text="Телефон" Style="{StaticResource CustomTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                    <TextBox Text="{Binding Clients.PhoneNumber}" x:Name="PhoneBox" Style="{StaticResource RoundedTextBoxStyle}" Margin="5" Grid.Row="3" Grid.Column="1"/>
+
+                    <TextBlock Text="Почта" Style="{StaticResource CustomTextBlockStyle}" Grid.Row="4" Grid.Column="0"/>
+                    <TextBox Text="{Binding Clients.Email}" x:Name="EmailBox" Style="{StaticResource RoundedTextBoxStyle}" Margin="5" Grid.Row="4" Grid.Column="1"/>
+
+                    <TextBlock Text="Адрес" Style="{StaticResource CustomTextBlockStyle}" Grid.Row="5" Grid.Column="0"/>
+                    <TextBox Text="{Binding Clients.Address}" x:Name="AddressBox" Style="{StaticResource RoundedTextBoxStyle}" Margin="5" Grid.Row="5" Grid.Column="1"/>
+                </Grid>
+            </Border>
+
+            <!-- Информация о заказе и устройстве -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Заказ -->
+                <Border Grid.Column="0" Style="{StaticResource RoundedStackPanelStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Информация о заказе" Style="{StaticResource CustomTextBlockStyle2}"/>
+                        <TextBlock Text="Дата заказа" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <DatePicker Text="{Binding OrderDate}" x:Name="OrderDateBox" Margin="2"/>
+                        <TextBlock Text="Статус заказа" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <ComboBox Text="{Binding Status.StatusName}" x:Name="StatusComboBox" Margin="2"
+                                  DisplayMemberPath="StatusName"
+                                  SelectedValuePath="ID"
+                                  Style="{StaticResource RoundedComboBoxStyle}"/>
+                        <TextBlock Text="Дата оплаты" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <DatePicker Text="{Binding CompletedWorks.CompletionDate}" x:Name="CompletionDate" Margin="2"/>
+                        <TextBlock Text="Способ оплаты" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <ComboBox Text="{Binding PaymentMethods.PaymentMethodName}" x:Name="PaymentMethodNamebb" 
+                                  DisplayMemberPath="PaymentMethodName" 
+                                  SelectedValue="ID"
+                                  Style="{StaticResource RoundedComboBoxStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Устройство -->
+                <Border Grid.Column="2" Style="{StaticResource RoundedStackPanelStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Информация об устройстве" Style="{StaticResource CustomTextBlockStyle2}"/>
+                        <TextBlock Text="Тип девайса" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox Text="{Binding Devices.DeviceType}" x:Name="DeviceTypeBox" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
+                        <TextBlock Text="Брэнд" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox Text="{Binding Devices.Brand}" x:Name="BrandBox" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
+                        <TextBlock Text="Модель" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox Text="{Binding Devices.Model}" x:Name="ModelBox" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
+                        <TextBlock Text="Серийный номер" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox Text="{Binding Devices.SerialNumber}" x:Name="SerialNumberBox" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Выбор деталей -->
+            <Border Style="{StaticResource CustomPartBorderStyle}" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="Выбор деталей" FontWeight="Bold" FontSize="16" Margin="10"/>
+                    <ItemsControl x:Name="PartsList" ItemsSource="{Binding UsedParts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="5" Padding="5" BorderThickness="1" BorderBrush="Gray" CornerRadius="8">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Parts.PartName}" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                        <TextBlock Text="{Binding Parts.Price}" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                        <Button Content="-" Width="30" Margin="5,0" Click="DecreaseCount_Click"/>
+                                        <TextBox Text="{Binding Quantity}" x:Name="QuantityWND" Width="30" IsReadOnly="True" VerticalAlignment="Center"/>
+                                        <Button Content="+" Width="30" Margin="5,0" Click="IncreaseCount_Click"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
-            </ScrollViewer>
-        </Border>
+            </Border>
 
-        <Button x:Name="SaveButton" Content="Сохранить" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
-              Width="120" Style="{StaticResource SignINUP}" Click="SaveButton_Click"/>
 
-    </Grid>
+            <!-- Выбор Work -->
+            <Border Style="{StaticResource CustomPartBorderStyle}" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="Выбор работ" FontWeight="Bold" FontSize="16" Margin="10"/>
+                    <ItemsControl x:Name="WorkList" ItemsSource="{Binding CompletedWorks}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="5" Padding="5" BorderThickness="1" BorderBrush="Gray" CornerRadius="8">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding CompletedWork.Works.WorkName}" Width="250" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding CompletedWork.Works.Price}" Width="80" VerticalAlignment="Center"/>
+                                        <CheckBox IsChecked="{Binding IsSelected}"  Checked="WorkCheckBox_Checked" Unchecked="WorkCheckBox_Checked"/>
+                                        <TextBlock Text="{Binding CompletedWork.Works.Description}" Width="auto" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
 
+            <!-- Итоговая сумма -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                <TextBlock Text="Итоговая сумма: " FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TotalAmountText" FontSize="16" FontWeight="Bold" Margin="5,0" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Кнопка сохранения -->
+            <Button x:Name="SaveButton" Content="Сохранить"
+                    Width="150" Height="40"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource SignINUP}"
+                    Click="SaveButton_Click"/>
+        </StackPanel>
+    </ScrollViewer>
+    
 </Page>

@@ -23,20 +23,10 @@ namespace WorkShopPC.wndPC
     {
         public Employees user;
 
-        public AdminWindow()
-        {
-            InitializeComponent();
-
-            
-        }
-
         public AdminWindow(Employees user)
         {
+            InitializeComponent();
             this.user = user;
-        }
-
-        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
 
         }
 
@@ -68,6 +58,19 @@ namespace WorkShopPC.wndPC
         private void NewOrder_Click(object sender, RoutedEventArgs e)
         {
             AdminFrame.NavigationService.Navigate(new NewOrder(null));
+        }
+
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            AdminFrame.NavigationService.Navigate(new Profile(user));
+
+        }
+
+        private void ReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new Report();
+            newWindow.Show();
         }
     }
 }

@@ -130,7 +130,7 @@ namespace WorkShopPC
                 }
                 if (user.RoleID == 1)
                 {
-                    var newWindow = new AdminWindow();
+                    var newWindow = new AdminWindow(user);
                     newWindow.Show();
                     this.Close();
                 }

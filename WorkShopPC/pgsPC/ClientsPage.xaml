@@ -12,14 +12,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
+            
         </Grid.RowDefinitions>
-        
-        <TextBox x:Name="SearchOrdersName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchOrdersName_TextChanged" 
-          Width="200" Height="30" Grid.Row="0"/>
-        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Введите название" VerticalAlignment="Center" Style="{StaticResource CustomTextBlockStyle2}" Margin="0,0,20,0"/>
+            <TextBox x:Name="SearchOrdersName" TextChanged="SearchOrdersName_TextChanged" 
+                     Width="220" Height="30" Style="{StaticResource RoundedTextBoxStyle}"/>
+        </StackPanel>
+
 
         <DataGrid Name="DataGridClients"  AutoGenerateColumns="False" IsReadOnly="True"
-      VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" Grid.Row="1">
+      VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" Grid.Row="1" Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
@@ -30,12 +33,13 @@
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="ButtonEdit" Content="Редактировать" Click="ButtonEdit_Click" Background="White"/>
+                            <Button x:Name="ButtonCheck" Content="Открыть информацию о клинте" Click="ButtonCheck_Click" Background="White"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </Page>

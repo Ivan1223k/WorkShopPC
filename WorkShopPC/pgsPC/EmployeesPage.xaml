@@ -14,9 +14,14 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="SearchEmplName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchEmplName_TextChanged" 
-         Width="200" Height="30" Grid.Row="0"/>
-        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Введите Имя Фамилию" VerticalAlignment="Center" Style="{StaticResource CustomTextBlockStyle2}" Margin="0,0,20,0"/>
+            <TextBox x:Name="SearchEmplName" TextChanged="SearchEmplName_TextChanged" 
+             Width="220" Height="30" Style="{StaticResource RoundedTextBoxStyle}"/>
+        </StackPanel>
+
+        
+        
 
         <DataGrid Name="DataGridEmployees"  AutoGenerateColumns="False" IsReadOnly="True"
                 VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource RoundedDataGridStyle}" Grid.Row="1">

@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
+using System.Data.Entity;
 
 namespace WorkShopPC.pgsPC
 {
@@ -26,8 +27,11 @@ namespace WorkShopPC.pgsPC
         public OrdersPage()
         {
             InitializeComponent();
-            
-            DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();
+
+
+
+            DataGridOrders.ItemsSource = Entities.GetContext().Orders.ToList();   
+            SortOrdersCategory.ItemsSource = Entities.GetContext().Status.ToList();
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
@@ -72,19 +76,39 @@ namespace WorkShopPC.pgsPC
             }
         }
 
-        private void UpdateOrders() 
-        { 
-            var currentOrder = Entities.GetContext().Orders.ToList();
-            DataGridOrders.ItemsSource = currentOrder.Where(x =>
-        x.Clients.FirstName.ToLower().Contains(SearchOrdersName.Text.ToLower())).ToList();
-            
+        private void UpdateOrders()
+        {
+            var context = Entities.GetContext();
 
-            //    if (SortOrdersCategory.SelectedIndex == 0) DataGridOrders.ItemsSource = currentOrder.Where(x =>
-            //x.Status.ToLower().Contains(SortOrdersCategory.Text.ToLower())).ToList();
+            var currentOrders = context.Orders
+                .Include(o => o.Status)
+                .Include(o => o.Clients)
+                .Include(o => o.Devices)
+                .ToList();
+
+            
+            if (!string.IsNullOrWhiteSpace(SearchOrdersName.Text))
+            {
+                currentOrders = currentOrders
+                    .Where(x => x.Clients.FirstName
+                        .ToLower()
+                        .Contains(SearchOrdersName.Text.ToLower()))
+                    .ToList();
+            }
+
+            // Фильтрация по статусу
+            if (SortOrdersCategory.SelectedItem is Status selectedStatus)
+            {
+                currentOrders = currentOrders
+                    .Where(x => x.StatusID == selectedStatus.ID)
+                    .ToList();
+            }
+
+            DataGridOrders.ItemsSource = currentOrders;
         }
 
         private void SearchOrdersName_TextChanged(object sender, TextChangedEventArgs e)
-       {
+        {
             UpdateOrders();
         }
 
@@ -95,7 +119,9 @@ namespace WorkShopPC.pgsPC
 
         private void CleanFilter_Click(object sender, RoutedEventArgs e)
         {
-
+            SearchOrdersName.Text = "";
+            SortOrdersCategory.SelectedItem = null;
+            UpdateOrders();
         }
     }
 }

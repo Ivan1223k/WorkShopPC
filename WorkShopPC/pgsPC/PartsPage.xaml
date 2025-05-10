@@ -8,55 +8,89 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PartsPage">
 
+    <Page.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+    </Page.Resources>
+
+
     <Grid>
-        <TextBox x:Name="SearchPartsName" HorizontalAlignment="Right" VerticalAlignment="Top" TextChanged="SearchPartsName_TextChanged" 
-   Width="200" Height="30"/>
-        <TextBlock Text="Введите название" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-        <ListView Name="ListParts" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,35,0,0"
-          HorizontalContentAlignment="Center" Style="{DynamicResource RoundedListViewStyle}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Text="Введите название" VerticalAlignment="Center" Style="{StaticResource CustomTextBlockStyle2}" Margin="0,0,20,0"/>
+            <TextBox x:Name="SearchPartsName" TextChanged="SearchPartsName_TextChanged" 
+     Width="220" Height="30" Style="{StaticResource RoundedTextBoxStyle}"/>
+        </StackPanel>
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem" BasedOn="{StaticResource RoundedListViewItemStyle}"/>
-            </ListView.ItemContainerStyle>
-            
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition x:Name="One" Height="Auto"></RowDefinition>
-                            <RowDefinition x:Name="Two" Height="150"></RowDefinition>
-                            <RowDefinition x:Name="Three" Height="150"></RowDefinition>
-                            <RowDefinition x:Name="Four" Height="150"></RowDefinition>
-                        </Grid.RowDefinitions>
 
-                        <!--<Image>
-                            <Image.Source>
-                                <Binding Path="">
-                                    <Binding.TargetNullValue>
-                                        <ImageSource>//</ImageSource>
-                                    </Binding.TargetNullValue>
-                                </Binding>
-                            </Image.Source>
-                        </Image>-->
+        <ListView Name="ListParts"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+          ScrollViewer.VerticalScrollBarVisibility="Auto"
+          Margin="10,40,10,10"
+          HorizontalContentAlignment="Left"
+          Grid.RowSpan="1"
+          Height="auto"
+          Style="{DynamicResource RoundedListViewStyle}">
 
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" Width="300"
-                                   TextWrapping="Wrap" Text="{Binding PartName}" FontSize = "18"/>
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center" Width="300" 
-                                   TextWrapping="Wrap" Text="{Binding Description}" FontSize = "18" Margin="0,100,0,0"/>
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" Width="300" 
-                                   TextWrapping="Wrap" Text="{Binding Price}" FontSize = "18" Margin="0,200,0,0"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+            <!-- Устанавливаем фиксированное число столбцов -->
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                    <UniformGrid Columns="4"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            
+
+            <!-- Шаблон элемента -->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#DDD" BorderThickness="1" CornerRadius="8" Padding="10" Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="150"/>                                
+                                <RowDefinition Height="Auto"/>                                
+                                <RowDefinition Height="Auto"/>                                
+                                <RowDefinition Height="Auto"/>                                
+                            </Grid.RowDefinitions>
+
+                            <!-- Картинка -->
+                            <Image Grid.Row="0"
+                           Source="{Binding PicturePart, Converter={StaticResource ByteArrayToImageConverter}}"
+                           Stretch="UniformToFill"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"/>
+
+                            <!-- Название -->
+                            <TextBlock Grid.Row="1"
+                               Text="{Binding PartName}"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+
+                            <!-- Описание -->
+                            <TextBlock Grid.Row="2"
+                               Text="{Binding Description}"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+
+                            <!-- Цена -->
+                            <TextBlock Grid.Row="3"
+                               Text="{Binding Price}"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
 
+        <!--<Button x:Name="AddImage" Content="ADDIMAGE" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AddImage_Click" Margin="0,414,0,0" Grid.Row="1"/>-->
 
     </Grid>
 </Page>

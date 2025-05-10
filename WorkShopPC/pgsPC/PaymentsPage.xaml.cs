@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace WorkShopPC.pgsPC
 {
     /// <summary>
@@ -23,31 +24,46 @@ namespace WorkShopPC.pgsPC
         public PaymentsPage()
         {
             InitializeComponent();
+
+            SortPaymentCategory.ItemsSource =Entities.GetContext().PaymentMethods.ToList();
             DataGridPayments.ItemsSource = Entities.GetContext().Payments.ToList();
         }
 
         private void UpdatePayments()
         {
+            var context = Entities.GetContext();
 
-            var currentPayment = Entities.GetContext().Payments.ToList();
+            // Загружаем все платежи с включением связанных данных (если надо)
+            var currentPayments = context.Payments
+                .ToList();
 
-            if (SortOrdersCategory.SelectedIndex == 0) DataGridPayments.ItemsSource = currentPayment.Where(x =>
-        x.PaymentMethod.ToLower().Contains(SortOrdersCategory.Text.ToLower())).ToList();
+            // Фильтрация по способу оплаты
+            if (SortPaymentCategory.SelectedItem is PaymentMethods selectedMethod)
+            {
+                currentPayments = currentPayments
+                    .Where(p => p.PaymentMethodID == selectedMethod.ID)
+                    .ToList();
+            }
+
+            DataGridPayments.ItemsSource = currentPayments;
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePayments();
+           
         }
 
         private void CleanFilter_Click(object sender, RoutedEventArgs e)
         {
+            SortPaymentCategory.SelectedItem = null;
 
+            var context = Entities.GetContext();
+            DataGridPayments.ItemsSource = context.Payments.ToList();
         }
 
         private void SortOrdersCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdatePayments();
         }
     }
 }

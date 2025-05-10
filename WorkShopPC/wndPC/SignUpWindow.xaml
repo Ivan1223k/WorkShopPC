@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkShopPC.wndPC"
         mc:Ignorable="d"
-        Title="SignUpWindow" Height="450" Width="650">
+        Title="SignUpWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -15,18 +15,93 @@
         <Button x:Name="SignInWindow" Content="Войти" HorizontalAlignment="Right" Style="{StaticResource SignINUP }"
                 VerticalAlignment="Center" Margin="5" Width="150" Click="SignInWindow_Click"/>
 
+        <Border Style="{StaticResource CustomBorderStyle}" Grid.Row="1" Width="600">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <Border Grid.Row="1" Style="{StaticResource RoundedStackPanelStyle}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBox x:Name="nameText" Text="Имя" Width="250" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
-                <TextBox x:Name="surnameText" Text="Фамилия" Width="250" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
-                <TextBox x:Name="phoneText" Text="Телефон" Width="250" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
-                <TextBox x:Name="loginText" Text="Почта" Width="250" Margin="2" Style="{StaticResource RoundedTextBoxStyle}"/>
-                <PasswordBox x:Name="passwordText" Width="250"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <!-- Ширина для подписей -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Оставшееся место для полей -->
+                </Grid.ColumnDefinitions>
 
-                <Button x:Name="signUpButton" Content="Зарегистрироваться" Click="SignUpButton_Click"
-                    Style="{StaticResource SignINUP }" Width="200" Margin="10"/>
-            </StackPanel>
+                <!-- Заголовок -->
+                <TextBlock Text="Регистрация" 
+                   Style="{StaticResource CustomTextBlockStyle2}"
+                   Grid.Row="0" Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+                <!-- Имя -->
+                <TextBlock Text="Имя" 
+                   Style="{StaticResource CustomTextBlockStyle}" 
+                   Grid.Row="1" Grid.Column="0"
+                   VerticalAlignment="Center"/>
+                <TextBox x:Name="nameText" 
+                 Style="{StaticResource RoundedTextBoxStyle}"
+                 Grid.Row="1" Grid.Column="1"
+                 Margin="2"/>
+
+                <!-- Фамилия -->
+                <TextBlock Text="Фамилия" 
+                   Style="{StaticResource CustomTextBlockStyle}" 
+                   Grid.Row="2" Grid.Column="0"
+                   VerticalAlignment="Center"/>
+                <TextBox x:Name="surnameText" 
+                 Style="{StaticResource RoundedTextBoxStyle}"
+                 Grid.Row="2" Grid.Column="1"
+                 Margin="2"/>
+
+                <!-- Телефон -->
+                <TextBlock Text="Телефон" 
+                   Style="{StaticResource CustomTextBlockStyle}" 
+                   Grid.Row="3" Grid.Column="0"
+                   VerticalAlignment="Center"/>
+
+                <TextBox x:Name="phoneText" 
+                 Style="{StaticResource RoundedTextBoxStyle}"
+                 Grid.Row="3" Grid.Column="1"
+                 Margin="2"/>
+
+                <!-- Почта -->
+                <TextBlock Text="Почта" 
+                   Style="{StaticResource CustomTextBlockStyle}" 
+                   Grid.Row="4" Grid.Column="0"
+                   VerticalAlignment="Center"/>
+                <TextBox x:Name="loginText" 
+                 Style="{StaticResource RoundedTextBoxStyle}"
+                 Grid.Row="4" Grid.Column="1"
+                 Margin="2"/>
+
+                <!-- Пароль -->
+                <TextBlock Text="Пароль" 
+                   Style="{StaticResource CustomTextBlockStyle}" 
+                   Grid.Row="5" Grid.Column="0"
+                   VerticalAlignment="Center"/>
+                <PasswordBox x:Name="passwordText" 
+                     Grid.Row="5" Grid.Column="1"
+                     Margin="2"
+                     />
+
+                <!-- Кнопка -->
+                <Button x:Name="signUpButton" 
+                Content="Зарегистрироваться" 
+                Click="SignUpButton_Click"
+                Style="{StaticResource SignINUP}" 
+                Width="200" 
+                HorizontalAlignment="Center"
+                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
+                Margin="0,10,0,0"/>
+            </Grid>
         </Border>
 
 

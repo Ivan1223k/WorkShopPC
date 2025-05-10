@@ -28,14 +28,14 @@ namespace WorkShopPC.pgsPC
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new InformationEmployees((sender as Button).DataContext as Employees));
         }
 
         private void UpdateEmpls()
         {
             var currentOrder = Entities.GetContext().Employees.ToList();
-            currentOrder = currentOrder.Where(x =>
-        x.FirstName.ToLower().Contains(SearchEmplName.Text.ToLower())).ToList();
+            DataGridEmployees.ItemsSource = currentOrder.Where(x =>
+        (x.FirstName + " " + x.LastName).ToLower().Contains(SearchEmplName.Text.ToLower())).ToList();
 
         }
 
