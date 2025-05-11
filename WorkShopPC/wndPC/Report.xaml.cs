@@ -58,7 +58,7 @@ namespace WorkShopPC.wndPC
                     .Select(g => new
                     {
                         WorkName = g.Key,
-                        TotalPrice = g.Sum(w => w.Works.Price ?? 0) // учитываем, если Price может быть null
+                        TotalPrice = g.Sum(w => w.Works.Price ?? 0)
                     })
                     .ToList();
 

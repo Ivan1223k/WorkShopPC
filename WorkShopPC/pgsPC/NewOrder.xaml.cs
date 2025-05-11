@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +25,11 @@ namespace WorkShopPC.pgsPC
 
 
         public Orders _orders = new Orders();
+
+        private bool IsValidMail(string email)
+        {
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        }
 
         public NewOrder(Orders orders)
         {
@@ -128,22 +134,26 @@ namespace WorkShopPC.pgsPC
             {
                 Amount = Convert.ToDecimal(TotalAmountText.Text),
                 PaymentMethods = selectedPaymentMethods,
+
+
                 PaymentDate = CompletionDate.SelectedDate.Value,
             };
 
 
-
+            var regex = new Regex(@"^8\(\d{3}\)\d{3}-\d{2}-\d{2}$");
 
             if (string.IsNullOrWhiteSpace(_clients.FirstName)) errors.AppendLine("Введите имя!");
             if (string.IsNullOrWhiteSpace(_clients.LastName)) errors.AppendLine("Введите фамилию!");
             if (string.IsNullOrWhiteSpace(_clients.Email)) errors.AppendLine("Введите почту!");
+            if (!IsValidMail(EmailBox.Text))errors.AppendLine("Введите корректный email");
             if (string.IsNullOrWhiteSpace(_clients.PhoneNumber)) errors.AppendLine("Введите телефон!");
+            if (!regex.IsMatch(PhoneBox.Text)) errors.AppendLine("Укажите номер телефона в формате 8(XXX)XXX-XX-XX");
             if (string.IsNullOrWhiteSpace(_clients.Address)) errors.AppendLine("Введите адресс!");
             if (string.IsNullOrWhiteSpace(_devices.DeviceType)) errors.AppendLine("Введите тип девайса!");
             if (string.IsNullOrWhiteSpace(_devices.Brand)) errors.AppendLine("Введите брэнд!");
             if (string.IsNullOrWhiteSpace(_devices.Model)) errors.AppendLine("Введите модель девайса!");
             if (string.IsNullOrWhiteSpace(_devices.SerialNumber)) errors.AppendLine("Введите серийный номер!");
-            if (string.IsNullOrWhiteSpace(OrderDateBox.Text)) errors.AppendLine("Введите дату!");
+            if (!CompletionDate.SelectedDate.HasValue){MessageBox.Show("Выберите дату платежа!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);return;}
             if (selectedStatus == null){errors.AppendLine("Выберите статус!");}
             if (selectedPaymentMethods == null){errors.AppendLine("Выберите способ оплаты!");}
 
@@ -178,7 +188,11 @@ namespace WorkShopPC.pgsPC
             Entities.GetContext().SaveChanges();
 
 
-            _orders.OrderDate = OrderDateBox.SelectedDate.Value;
+            if (!OrderDateBox.SelectedDate.HasValue){errors.AppendLine("Введите дату!");}
+            else
+            {
+                _orders.OrderDate = OrderDateBox.SelectedDate.Value;
+            }
             _orders.Clients = _clients;
             _orders.Devices = _devices;
             _orders.Status = selectedStatus;
