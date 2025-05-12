@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fd813286b0ac462a85060b484540a68f" Name="Diagram1" ZoomLevel="98">
+      <Diagram DiagramId="4a43457ca67d469ea1cb2845402a4766" Name="Diagram1">
         <EntityTypeShape EntityType="workshop_pcModel.Clients" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.CompletedWorks" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.Devices" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.Employees" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.Orders" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.Parts" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="workshop_pcModel.PaymentMethods" Width="2" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="workshop_pcModel.PaymentMethods" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.Payments" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.Roles" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="workshop_pcModel.Status" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />

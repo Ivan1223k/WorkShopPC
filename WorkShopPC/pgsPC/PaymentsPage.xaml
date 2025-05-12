@@ -36,13 +36,7 @@ VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource Rou
                 <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethods.PaymentMethodName}"/>
                 <DataGridTextColumn Header="Сумма" Binding="{Binding Amount}"/>
 
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="ButtonEdit" Content="Редактировать" Click="ButtonEdit_Click" Background="White"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
 
             </DataGrid.Columns>
         </DataGrid>

@@ -19,7 +19,7 @@
 
         <WrapPanel Grid.Row="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                <TextBlock Text="Введите название" VerticalAlignment="Center" Style="{StaticResource CustomTextBlockStyle2}" Margin="0,0,20,0"/>
+                <TextBlock Text="Введите ФИО" VerticalAlignment="Center" Style="{StaticResource CustomTextBlockStyle2}" Margin="0,0,20,0"/>
                 <TextBox x:Name="SearchOrdersName" TextChanged="SearchOrdersName_TextChanged" 
                      Width="220" Height="30" Style="{StaticResource RoundedTextBoxStyle}"/>
             </StackPanel>

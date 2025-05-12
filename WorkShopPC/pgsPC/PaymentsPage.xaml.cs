@@ -48,10 +48,6 @@ namespace WorkShopPC.pgsPC
             DataGridPayments.ItemsSource = currentPayments;
         }
 
-        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
 
         private void CleanFilter_Click(object sender, RoutedEventArgs e)
         {

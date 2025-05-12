@@ -40,7 +40,7 @@
 
                     <TextBlock Text="Роль"/>
                     <ComboBox Text="{Binding Roles.RoleName}" Focusable="False" x:Name="SelectedRoleComboBox"
-                              DisplayMemberPath="RoleName" SelectedItem="{Binding RoleID}" Margin="2" Style="{StaticResource RoundedComboBoxStyle}" />
+                              DisplayMemberPath="RoleName" SelectedItem="{Binding ID}" Margin="2" Style="{StaticResource RoundedComboBoxStyle}" />
 
                     <Button x:Name="SaveButton" Content="Сохранить"
                             Click="SaveButton_Click" Style="{StaticResource SignINUP}"

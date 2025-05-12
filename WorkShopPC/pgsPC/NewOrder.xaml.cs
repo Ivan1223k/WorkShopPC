@@ -35,7 +35,6 @@ namespace WorkShopPC.pgsPC
         {
             InitializeComponent();
             StatusComboBox.ItemsSource = Entities.GetContext().Status.ToList();
-
             PaymentMethodNamebb.ItemsSource = Entities.GetContext().PaymentMethods.ToList();
 
             if (orders != null && orders.ID != 0)
@@ -111,7 +110,7 @@ namespace WorkShopPC.pgsPC
 
             Status selectedStatus = StatusComboBox.SelectedItem as Status;
 
-            PaymentMethods selectedPaymentMethods = PaymentMethodNamebb.SelectedItem as PaymentMethods;
+            PaymentMethods selectedPaymentMethodsv = PaymentMethodNamebb.SelectedItem as PaymentMethods;
 
             Clients _clients = new Clients
             {
@@ -133,7 +132,7 @@ namespace WorkShopPC.pgsPC
             Payments _payments = new Payments
             {
                 Amount = Convert.ToDecimal(TotalAmountText.Text),
-                PaymentMethods = selectedPaymentMethods,
+                PaymentMethods = selectedPaymentMethodsv,
 
 
                 PaymentDate = CompletionDate.SelectedDate.Value,
@@ -155,7 +154,7 @@ namespace WorkShopPC.pgsPC
             if (string.IsNullOrWhiteSpace(_devices.SerialNumber)) errors.AppendLine("Введите серийный номер!");
             if (!CompletionDate.SelectedDate.HasValue){MessageBox.Show("Выберите дату платежа!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);return;}
             if (selectedStatus == null){errors.AppendLine("Выберите статус!");}
-            if (selectedPaymentMethods == null){errors.AppendLine("Выберите способ оплаты!");}
+            if (selectedPaymentMethodsv == null){errors.AppendLine("Выберите способ оплаты!");}
 
             if (errors.Length > 0) { MessageBox.Show(errors.ToString()); return; }
 
@@ -197,6 +196,7 @@ namespace WorkShopPC.pgsPC
             _orders.Devices = _devices;
             _orders.Status = selectedStatus;
             _orders.TotalCost = total;
+            //_orders.Payments = selectedPaymentMethodsv;
 
             UpdateTotal();
 
