@@ -125,7 +125,6 @@
     <Compile Include="pgsPC\ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pgsPC\CurrentSession.cs" />
     <Compile Include="pgsPC\EmployeesPage.xaml.cs">
       <DependentUpon>EmployeesPage.xaml</DependentUpon>
     </Compile>
