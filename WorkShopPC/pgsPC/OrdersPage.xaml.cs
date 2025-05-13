@@ -17,6 +17,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
 using System.Data.Entity;
 using System.Data;
+using WorkShopPC.wndPC;
 
 namespace WorkShopPC.pgsPC
 {
@@ -37,7 +38,20 @@ namespace WorkShopPC.pgsPC
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NewOrder((sender as Button).DataContext as Orders));
+            var selectedOrder = (sender as Button).DataContext as Orders;
+
+            // Получаем текущий Window и проверяем, является ли он AdminWindow
+            var window = Window.GetWindow(this) as AdminWindow;
+
+            if (window != null && window.user != null)
+            {
+                int employeeId = window.user.ID;
+                NavigationService.Navigate(new NewOrder(selectedOrder, employeeId));
+            }
+            else
+            {
+                MessageBox.Show("Не удалось определить текущего сотрудника.");
+            }
         }
 
         private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)

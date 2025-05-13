@@ -24,7 +24,7 @@ namespace WorkShopPC.pgsPC
     public partial class NewOrder : Page
     {
 
-
+        private int _employeeId;
         public Orders _orders = new Orders();
 
         private bool IsValidMail(string email)
@@ -32,11 +32,12 @@ namespace WorkShopPC.pgsPC
             return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
 
-        public NewOrder(Orders orders)
+        public NewOrder(Orders orders, int employeeId)
         {
             InitializeComponent();
             StatusComboBox.ItemsSource = Entities.GetContext().Status.ToList();
             PaymentMethodNamebb.ItemsSource = Entities.GetContext().PaymentMethods.ToList();
+            _employeeId = employeeId;
 
             if (orders != null && orders.ID != 0)
             {
@@ -176,47 +177,26 @@ namespace WorkShopPC.pgsPC
             if (_devices.ID == 0) Entities.GetContext().Devices.Add(_devices);
             if (_orders.ID == 0) Entities.GetContext().Orders.Add(_orders);
 
-
+            Entities.GetContext().SaveChanges();
             _payments.OrderID = _orders.ID;
             Entities.GetContext().Payments.Add(_payments);
             
-            Entities.GetContext().SaveChanges();
+            
 
             // Удаляем старые работы по заказу
             var oldWorks = Entities.GetContext().CompletedWorks
                 .Where(w => w.OrderID == _orders.ID)
                 .ToList();
 
-            if (oldWorks.Any())
-            {
-                foreach (var work in oldWorks)
-                {
-                    // Если вы работаете с DbContext, но в старой версии EF:
-                    Entities.GetContext().CompletedWorks.Attach(work);
-                    Entities.GetContext().CompletedWorks.Remove(work);
-                }
-
-                try
-                {
-                    Entities.GetContext().SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Работы для удаления не найдены.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-
+            
             // Добавляем выбранные работы
             var selectedWorks = (WorkList.ItemsSource as IEnumerable<WorkViewModel>)
                 ?.Where(vm => vm.IsSelected)
                 .Select(vm => new CompletedWorks
                 {
                     OrderID = _orders.ID,
-                    WorkID = vm.CompletedWork.WorkID
+                    WorkID = vm.CompletedWork.WorkID,
+                    EmployeeID = _employeeId
                 })
                 .ToList();
 
@@ -227,6 +207,7 @@ namespace WorkShopPC.pgsPC
                     Entities.GetContext().CompletedWorks.Add(work);
                 }
             }
+            Entities.GetContext().SaveChanges();
 
             try
             {

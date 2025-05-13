@@ -28,6 +28,7 @@ namespace WorkShopPC.wndPC
             InitializeComponent();
             this.user = user;
 
+
         }
 
         private void PrtsButton_Click(object sender, RoutedEventArgs e)
@@ -57,7 +58,7 @@ namespace WorkShopPC.wndPC
 
         private void NewOrder_Click(object sender, RoutedEventArgs e)
         {
-            AdminFrame.NavigationService.Navigate(new NewOrder(null));
+            AdminFrame.NavigationService.Navigate(new NewOrder(null, user.ID));
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
