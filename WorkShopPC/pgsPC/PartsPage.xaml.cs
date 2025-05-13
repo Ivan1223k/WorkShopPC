@@ -33,13 +33,6 @@ namespace WorkShopPC.pgsPC
 
         }
 
-
-
-
-
-
-
-
         private void UpdateParts()
         {
             var currentOrder = Entities.GetContext().Parts.ToList();

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
 using System.Data.Entity;
+using System.Data;
 
 namespace WorkShopPC.pgsPC
 {
@@ -56,22 +57,37 @@ namespace WorkShopPC.pgsPC
                 {
                     var context = Entities.GetContext();
 
-                    
                     foreach (var order in ordersForRemoving)
                     {
+                        // Получаем все связанные данные
+                        var works = context.CompletedWorks.Where(w => w.OrderID == order.ID).ToList();
+                        var usedParts = context.UsedParts.Where(u => u.OrderID == order.ID).ToList();
+                        var payments = context.Payments.Where(p => p.OrderID == order.ID).ToList();
+
+                        foreach (var work in works)
+                        {
+                            context.Entry(work).State = EntityState.Deleted;
+                        }
+                        foreach (var part in usedParts)
+                        {
+                            context.Entry(part).State = EntityState.Deleted;
+                        }
+                        foreach (var payment in payments)
+                        {
+                            context.Entry(payment).State = EntityState.Deleted;
+                        }
                         context.Orders.Remove(order);
                     }
 
                     context.SaveChanges();
+                    MessageBox.Show("Заказы и связанные данные успешно удалены!");
 
-                    MessageBox.Show("Данные успешно удалены!");
-
-                    
+                    // Обновляем грид
                     DataGridOrders.ItemsSource = context.Orders.ToList();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                    MessageBox.Show("Ошибка при удалении: " + ex.Message + "\n\nДетали: " + ex.InnerException?.Message);
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -109,8 +110,7 @@ namespace WorkShopPC.pgsPC
             StringBuilder errors = new StringBuilder();
 
             Status selectedStatus = StatusComboBox.SelectedItem as Status;
-
-            PaymentMethods selectedPaymentMethodsv = PaymentMethodNamebb.SelectedItem as PaymentMethods;
+            PaymentMethods selectedPaymentMethod = PaymentMethodNamebb.SelectedItem as PaymentMethods;
 
             Clients _clients = new Clients
             {
@@ -132,94 +132,111 @@ namespace WorkShopPC.pgsPC
             Payments _payments = new Payments
             {
                 Amount = Convert.ToDecimal(TotalAmountText.Text),
-                PaymentMethods = selectedPaymentMethodsv,
-
-
-                PaymentDate = CompletionDate.SelectedDate.Value,
+                PaymentMethods = selectedPaymentMethod,
+                PaymentDate = CompletionDate.SelectedDate.Value
             };
-
 
             var regex = new Regex(@"^8\(\d{3}\)\d{3}-\d{2}-\d{2}$");
 
             if (string.IsNullOrWhiteSpace(_clients.FirstName)) errors.AppendLine("Введите имя!");
             if (string.IsNullOrWhiteSpace(_clients.LastName)) errors.AppendLine("Введите фамилию!");
             if (string.IsNullOrWhiteSpace(_clients.Email)) errors.AppendLine("Введите почту!");
-            if (!IsValidMail(EmailBox.Text))errors.AppendLine("Введите корректный email");
+            if (!IsValidMail(EmailBox.Text)) errors.AppendLine("Введите корректный email");
             if (string.IsNullOrWhiteSpace(_clients.PhoneNumber)) errors.AppendLine("Введите телефон!");
             if (!regex.IsMatch(PhoneBox.Text)) errors.AppendLine("Укажите номер телефона в формате 8(XXX)XXX-XX-XX");
-            if (string.IsNullOrWhiteSpace(_clients.Address)) errors.AppendLine("Введите адресс!");
+            if (string.IsNullOrWhiteSpace(_clients.Address)) errors.AppendLine("Введите адрес!");
             if (string.IsNullOrWhiteSpace(_devices.DeviceType)) errors.AppendLine("Введите тип девайса!");
-            if (string.IsNullOrWhiteSpace(_devices.Brand)) errors.AppendLine("Введите брэнд!");
+            if (string.IsNullOrWhiteSpace(_devices.Brand)) errors.AppendLine("Введите бренд!");
             if (string.IsNullOrWhiteSpace(_devices.Model)) errors.AppendLine("Введите модель девайса!");
             if (string.IsNullOrWhiteSpace(_devices.SerialNumber)) errors.AppendLine("Введите серийный номер!");
-            if (!CompletionDate.SelectedDate.HasValue){MessageBox.Show("Выберите дату платежа!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);return;}
-            if (selectedStatus == null){errors.AppendLine("Выберите статус!");}
-            if (selectedPaymentMethodsv == null){errors.AppendLine("Выберите способ оплаты!");}
+            if (!CompletionDate.SelectedDate.HasValue) { MessageBox.Show("Выберите дату платежа!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning); return; }
+            if (selectedStatus == null) errors.AppendLine("Выберите статус!");
+            if (selectedPaymentMethod == null) errors.AppendLine("Выберите способ оплаты!");
+            if (TotalAmountText == null) errors.AppendLine("Добавьте услугу или запчасть в заказ!");
 
             if (errors.Length > 0) { MessageBox.Show(errors.ToString()); return; }
 
-            
+            // Считаем стоимость деталей
             decimal total = (PartsList.ItemsSource as List<UsedParts>)?
                 .Sum(p => (p.Parts?.Price ?? 0) * p.Quantity) ?? 0;
 
-            // Получаем список выбранных работ
-            var selectedWorks = (WorkList.ItemsSource as IEnumerable<WorkViewModel>)
-                ?.Where(vm => vm.IsSelected)
-                .Select(vm => vm.CompletedWork)
-                .ToList();
+            _orders.OrderDate = OrderDateBox.SelectedDate ?? DateTime.Now;
+            _payments.PaymentDate = CompletionDate.SelectedDate.Value;
 
-            // Удаляем старые записи для этого заказа
-            var oldWorks = Entities.GetContext().CompletedWorks
-                .Where(w => w.OrderID == _orders.ID)
-                .ToList();
-
-            foreach (var work in oldWorks)
-            {
-                Entities.GetContext().CompletedWorks.Remove(work);
-            }
-
-            // Добавляем новые
-            foreach (var work in selectedWorks)
-            {
-                work.OrderID = _orders.ID;
-            }
-
-            Entities.GetContext().SaveChanges();
-
-
-            if (!OrderDateBox.SelectedDate.HasValue){errors.AppendLine("Введите дату!");}
-            else
-            {
-                _orders.OrderDate = OrderDateBox.SelectedDate.Value;
-            }
             _orders.Clients = _clients;
             _orders.Devices = _devices;
             _orders.Status = selectedStatus;
             _orders.TotalCost = total;
-            //_orders.Payments = selectedPaymentMethodsv;
+            _orders.Payments = new List<Payments> { _payments };
 
             UpdateTotal();
 
-
-
-
+            // Добавляем клиента, устройство и заказ, если они новые
             if (_clients.ID == 0) Entities.GetContext().Clients.Add(_clients);
             if (_devices.ID == 0) Entities.GetContext().Devices.Add(_devices);
             if (_orders.ID == 0) Entities.GetContext().Orders.Add(_orders);
-            if (_orders.ID == 0) Entities.GetContext().Payments.Add(_payments);
 
 
+            _payments.OrderID = _orders.ID;
+            Entities.GetContext().Payments.Add(_payments);
+            
+            Entities.GetContext().SaveChanges();
 
+            // Удаляем старые работы по заказу
+            var oldWorks = Entities.GetContext().CompletedWorks
+                .Where(w => w.OrderID == _orders.ID)
+                .ToList();
+
+            if (oldWorks.Any())
+            {
+                foreach (var work in oldWorks)
+                {
+                    // Если вы работаете с DbContext, но в старой версии EF:
+                    Entities.GetContext().CompletedWorks.Attach(work);
+                    Entities.GetContext().CompletedWorks.Remove(work);
+                }
+
+                try
+                {
+                    Entities.GetContext().SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Работы для удаления не найдены.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            // Добавляем выбранные работы
+            var selectedWorks = (WorkList.ItemsSource as IEnumerable<WorkViewModel>)
+                ?.Where(vm => vm.IsSelected)
+                .Select(vm => new CompletedWorks
+                {
+                    OrderID = _orders.ID,
+                    WorkID = vm.CompletedWork.WorkID
+                })
+                .ToList();
+
+            if (selectedWorks != null)
+            {
+                foreach (var work in selectedWorks)
+                {
+                    Entities.GetContext().CompletedWorks.Add(work);
+                }
+            }
 
             try
             {
                 Entities.GetContext().SaveChanges();
-                MessageBox.Show("Данные успешно добавлены!");
+                MessageBox.Show("Данные успешно сохранены!");
                 NavigationService.GoBack();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), "Ошибка при сохранении", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -237,7 +254,7 @@ namespace WorkShopPC.pgsPC
 
             // Общая сумма
             decimal total = partsTotal + worksTotal;
-            TotalAmountText.Text = total.ToString("C");
+            TotalAmountText.Text = total.ToString();
 
             // Привязываем к заказу
             _orders.TotalCost = total;

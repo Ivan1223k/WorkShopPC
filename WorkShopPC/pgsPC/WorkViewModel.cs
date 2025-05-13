@@ -21,7 +21,6 @@ namespace WorkShopPC.pgsPC
                 {
                     _isSelected = value;
                     OnPropertyChanged(nameof(IsSelected));
-                    
                 }
             }
         }

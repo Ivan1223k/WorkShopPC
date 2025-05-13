@@ -78,7 +78,7 @@
                               SelectedItem="{Binding StatusID}"
                               Style="{StaticResource RoundedComboBoxStyle}"/>
                                 <TextBlock Text="Дата оплаты" Style="{StaticResource CustomTextBlockStyle}"/>
-                                <DatePicker Text="{Binding CompletedWorks.CompletionDate}" x:Name="CompletionDate" Margin="2"/>
+                                <DatePicker Text="{Binding CompletionDate}" x:Name="CompletionDate" Margin="2"/>
                                 <TextBlock Text="Способ оплаты" Style="{StaticResource CustomTextBlockStyle}"/>
                                 <ComboBox Text="{Binding PaymentMethodName}" x:Name="PaymentMethodNamebb" 
                               DisplayMemberPath="PaymentMethodName" 
@@ -164,7 +164,7 @@
             <!-- Итоговая сумма -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
                 <TextBlock Text="Итоговая сумма: " FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                <TextBlock x:Name="TotalAmountText" FontSize="16" FontWeight="Bold" Margin="5,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TotalAmountText" Text="0,00" FontSize="16" FontWeight="Bold" Margin="5,0" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Кнопка сохранения -->

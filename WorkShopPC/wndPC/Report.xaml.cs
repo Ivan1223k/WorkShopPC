@@ -181,7 +181,7 @@ namespace WorkShopPC.wndPC
             }
 
             // Сохраняем файл Excel в нужном месте
-            string filePath = @"C:\Users\Ivan\Downloads\PaymentsReport.xlsx";
+            string filePath = @"C:\Users\roman\Downloads\PaymentsReport.xlsx";
             workbook.SaveAs(filePath);
         }
 
@@ -295,8 +295,8 @@ namespace WorkShopPC.wndPC
             application.Visible = true;
 
             // Сохраняем документ в формате .docx и .pdf
-            document.SaveAs2(@"C:\Users\Ivan\Downloads\Payments.docx");
-            document.SaveAs2(@"C:\Users\Ivan\Downloads\Payments.pdf", Word.WdExportFormat.wdExportFormatPDF);
+            document.SaveAs2(@"C:\Users\roman\Downloads\Payments.docx");
+            document.SaveAs2(@"C:\Users\roman\Downloads\Payments.pdf", Word.WdExportFormat.wdExportFormatPDF);
         }
     }
 }
